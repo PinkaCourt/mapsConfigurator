@@ -1,0 +1,19 @@
+{
+  "name": "mapsconfigurator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PinkaCourt/mapsConfigurator.git"
+  },
+  "author": "Pinka Court",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PinkaCourt/mapsConfigurator/issues"
+  },
+  "homepage": "https://github.com/PinkaCourt/mapsConfigurator#readme"
+}
