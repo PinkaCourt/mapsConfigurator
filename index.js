@@ -14,62 +14,31 @@ let AUTH = 'Basic ' + btoa(USER + ':' + PASS);
 
 const getHostButton = document.getElementById('getHost')
 
-const options = {
+const getOptions = {
   method: 'GET',
-  credentials: 'include',
   headers: {
     Authorization: 'Basic ' + btoa(USER + ':' + PASS),
+    ContentType: 'application/json'
   }
 }
 
-/*
-window.onload = initializeMediaSource;
-
-async function initializeMediaSource() {
-  done = await fetch(URL, options)
-    .then(res =>
-      console.log('ок'))
-}
-
-*/
-
-/*
-async function initializeMediaSource() {
-  done = await fetch(URL, {
-    method: 'GET',
-    mode: 'cors',
-    credentials: 'include',
-    headers: new Headers({
-      'Authorization': AUTH,
-      'Content-Type': 'application/json',
-      'Origin': 'http://127.0.0.1:8001'
-      })
-    })
-    .then(res =>
-      console.log('ок'))
-}
-*/
-
 getHostButton.addEventListener("click", async function() {
-
-  host = await fetch(URLhosts, options)
+  host = await fetch(URLhosts, getOptions)
     .then(res =>
-      //console.warn ('123');
-      console.log (res)
-      //res.json()
+      res.json()
       )
     .then(data => {
-      //makeElement('resultDiv', data[0])
-      //host = data[0];
+      makeElement('resultDiv', data[0])
+      host = data[0];
     });
-    /*
-    indexByRole = await fetch(URLIndexByRole, options)
+
+    indexByRole = await fetch(URLIndexByRole, getOptions)
       .then(res => res.json())
       .then(data => {
         owner = data.current_roles[0].index;
         makeElement('resultDiv', data.current_roles[0].index)
       });
-*/
+
 });
 
 function  makeElement(parentId, value) {
@@ -105,6 +74,15 @@ let bodyMap = {
     }
 }
 
+const postOptions = {
+  method: 'POST',
+  headers: {
+    Authorization: 'Basic ' + btoa(USER + ':' + PASS),
+    ContentType: 'application/json'
+  },
+  body: JSON.stringify(bodyMap)
+}
+
 createMapButton.addEventListener("click", async function() {
   map = await fetch(URLcreateMap, {
     method: 'POST',
@@ -120,20 +98,20 @@ createMapButton.addEventListener("click", async function() {
     .then(res =>
       console.log(res))
 });
+
 let addingMarkersButton = document.getElementById('addingMarkersButton')
 
+function selectID(e) {
+  value = e.meta.id;
+  toDeliteMaps.push(value);
+}
+
 addingMarkersButton.addEventListener("click", async function() {
-  mapList = await fetch(URLmaplist, {
-    method: 'GET',
-    headers: new Headers({
-      'Authorization': AUTH,
-      'Content-Type': 'application/json',
-      'Origin': 'http://127.0.0.1:8001'
-      })
-    })
-    .then(res =>
-      console.log(res))
-  makeElement('resultDiv', mapList)
+  mapList = await fetch(URLmaplist, getOptions)
+    .then(res => res.json())
+    .then(data =>
+      data.items[0].meta.id)
+    makeElement('resultDiv', mapList)
 });
 
 
