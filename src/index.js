@@ -1,5 +1,8 @@
 //import getOptions from "./constants.js"
 //const { getOptions } = require('./constants.js')
+
+import "./style.css";
+
 // const of http
 
 const IP =  document.getElementById('IP').value
@@ -10,6 +13,7 @@ const PASS = document.getElementById('PASS').value
 const getHostButton = document.getElementById('getHost')
 const addingMarkersButton = document.getElementById('addingMarkersButton')
 const removeMapsButton = document.getElementById('removeMapsButton')
+const resultDiv = document.getElementById('resultDiv')
 
 const URL = 'http://' + IP + ':' + PORT
 const URLhosts = URL + '/hosts'
@@ -174,3 +178,10 @@ removeMapsButton.addEventListener("click", async function() {
     .then(data =>
       toDeliteMaps = data.items[0].meta.id)
 });
+
+
+document.getElementById('barrelButton').addEventListener("click", function() {
+  while (resultDiv.firstChild) {
+    resultDiv.removeChild(resultDiv.lastChild);
+  }
+})
