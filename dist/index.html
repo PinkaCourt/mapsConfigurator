@@ -7,23 +7,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <fieldset class="step input" id="input">
+    <legend>Данные сервера</legend>
+    <label for="IP">IP :</label>
+    <input type="text" id="IP" name="IP" value="192.168.1.65">
+
+    <label for="PORT">PORT :</label>
+    <input type="text" id="PORT" name="PORT" value="8001">
+
+    <label for="USER">USER :</label>
+    <input type="text" id="USER" name="USER" value="root">
+
+    <label for="PASS">PASS :</label>
+    <input type="text" id="PASS" name="PASS" value="root">
+
+    <button class="button" id="getHost"> GET HOST </button>
+  </fieldset>
   <div id="root">
-    <fieldset class="step input" id="input">
-      <legend>Данные сервера</legend>
-      <label for="IP">IP :</label>
-      <input type="text" id="IP" name="IP" value="192.168.1.65">
-
-      <label for="PORT">PORT :</label>
-      <input type="text" id="PORT" name="PORT" value="8001">
-
-      <label for="USER">USER :</label>
-      <input type="text" id="USER" name="USER" value="root">
-
-      <label for="PASS">PASS :</label>
-      <input type="text" id="PASS" name="PASS" value="root">
-
-      <button class="button" id="getHost"> GET HOST </button>
-    </fieldset>
   </div>
   <script src="index.js"></script>
 </body>
