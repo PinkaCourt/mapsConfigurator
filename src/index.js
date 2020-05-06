@@ -156,11 +156,11 @@ document.getElementById('getGeolocation').addEventListener("click", function() {
   geoPosition = navigator.geolocation.getCurrentPosition(success,  error  )
 });
 
-let toDeliteMaps = [];
+let toDeleteMaps = [];
 
 function selectID(e) {
   value = e.meta.id;
-  toDeliteMaps.push(JSON.stringify(value));
+  toDeleteMaps.push(JSON.stringify(value));
 }
 
 
@@ -185,10 +185,11 @@ removeMapsButton.addEventListener("click", async function() {
   mapList = await fetch(URLmaplist, getOptions)
     .then(res => res.json())
     .then(data =>
-      toDeliteMaps = data.items[0].meta.id)
+      toDeleteMaps = data.items[0].meta.id)
 });
 
-
+//ToDO
+//firstChild
 document.getElementById('barrelButton').addEventListener("click", function() {
   while (resultDiv.firstChild) {
     resultDiv.removeChild(resultDiv.lastChild);
