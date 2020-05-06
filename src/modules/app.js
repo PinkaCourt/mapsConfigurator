@@ -23,14 +23,14 @@ class App extends Component {
     const forms = this.state.forms
     return (
       <div>
-        <fieldset class="step input" id="input">
+        <fieldset className="step input" id="input">
         <legend>Данные сервера</legend>
         <Form id={forms[0].id} value={forms[0].value} />
         <Form id={forms[1].id} value={forms[1].value} />
         <Form id={forms[2].id} value={forms[2].value} />
         <Form id={forms[3].id} value={forms[3].value} />
 
-        <button class="button" id="getHost"> GET HOST </button>
+        <button className="button" id="getHost"> GET HOST </button>
         </fieldset>
 
         <Step id={steps[0].id} buttonID={steps[0].buttonID} value={steps[0].value} />

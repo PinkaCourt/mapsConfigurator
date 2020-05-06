@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Step from './Step.js'
+import Step from './Step.js.js'
 class App extends Component {
 
 /*
