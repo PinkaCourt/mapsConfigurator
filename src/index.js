@@ -1,9 +1,18 @@
 //import getOptions from "./constants.js"
 //const { getOptions } = require('./constants.js')
-
 import "./style.css";
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+//import App from "./app.js"
 // const of http
+import App from './App'
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 const IP =  document.getElementById('IP').value
 const PORT = document.getElementById('PORT').value

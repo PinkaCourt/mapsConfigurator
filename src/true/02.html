@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MapsConfigurator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <fieldset class="step input" id="input">
+    <legend>Данные сервера</legend>
+    <label for="IP">IP :</label>
+    <input type="text" id="IP" name="IP" value="192.168.1.65">
+
+    <label for="PORT">PORT :</label>
+    <input type="text" id="PORT" name="PORT" value="8001">
+
+    <label for="USER">USER :</label>
+    <input type="text" id="USER" name="USER" value="root">
+
+    <label for="PASS">PASS :</label>
+    <input type="text" id="PASS" name="PASS" value="root">
+
+    <button class="button" id="getHost"> GET HOST </button>
+  </fieldset>
+  <div class="step" id="createMap">
+    <button class="button" id="createMapButton"> To create Map </button>
+    <div class="result" id="resultMap"></div>
+  </div>
+
+  <div  class="step" id="geolocation">
+    <button class="button" id="getGeolocation"> Get Geolocation </button>
+
+    </div>
+
+  <div  class="step" id="addingMarkers">
+    <button class="button" id="addingMarkersButton"> Map List </button>
+    </div>
+
+    <div  class="step" id="removeMaps">
+      <button class="button" id="removeMapsButton"> Remove Maps </button>
+      </div>
+  <div  class="step" id="barrel">
+    <button class="button" id="barrelButton"> do a barrel roll </button>
+    </div>
+  <div  class="step result" id="resultDiv">
+
+    </div>
+
+  <script src="index.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
