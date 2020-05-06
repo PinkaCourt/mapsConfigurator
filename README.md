@@ -1,0 +1,3 @@
+# mapsConfigurator
+
+just a game
