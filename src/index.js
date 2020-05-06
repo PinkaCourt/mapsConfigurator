@@ -3,9 +3,9 @@
 import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import App from "./app.js"
+
 // const of http
-import App from './App'
+import App from './modules/App'
 
 ReactDOM.render(
   <React.StrictMode>
