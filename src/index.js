@@ -2,10 +2,7 @@ import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './modules/App'
-
-//import getUuid from './func/getUuid'
 import makeElement from './func/makeElement.js'
-
 import {GetOptions} from "./func/httpapi.js"
 import {PostOptions} from "./func/httpapi.js"
 
@@ -20,12 +17,7 @@ const IP =  document.getElementById('IP').value
 const PORT = document.getElementById('PORT').value
 const USER = document.getElementById('USER').value
 const PASS = document.getElementById('PASS').value
-
 const AUTH = 'Basic ' + btoa(USER + ':' + PASS);
-
-
-//console.log(new GetOptions(AUTH))
-
 
 const URL = 'http://' + IP + ':' + PORT
 const URLhosts = URL + '/hosts'
@@ -41,7 +33,7 @@ const removeMapsButton = document.getElementById('removeMapsButton')
 const resultDiv = document.getElementById('resultDiv')
 
 getHostButton.addEventListener("click", async function() {
-  host = await fetch(URLhosts, new GetOptions(AUTH))
+  let host = await fetch(URLhosts, new GetOptions(AUTH))
     .then(res =>
       res.json()
       )
@@ -57,36 +49,6 @@ function  getUuid() {
   )
 }
 
-
-class MapStr {
-  constructor() {
-    this.name = 'NBL_Postman_Map99';
-    this.type = 'MAP_TYPE_GEO';
-    this.position = {
-      x: localStorage.getItem('longitude'),
-      y: localStorage.getItem('latitude')
-    };
-    this.zoom = 17;
-    this.provider_id = providerID
-  }
-}
-
-class MapObj {
-  constructor() {
-    this.id = getUuid();
-    this.sharing = {
-      kind: 'SHARING_KIND_NOT_SHARED',
-      shared_roles: []
-    };
-    this.map = new MapStr;
-  }
-}
-
-class ToCreate {
-  constructor() {
-    this.created = new MapObj;
-  }
-}
 
 createMapButton.addEventListener("click", async function() {
   map = await fetch(URLcreateMap, new PostOptions(AUTH, new ToCreate))
@@ -133,40 +95,14 @@ function selectID(e) {
   toDeleteMaps.push(JSON.stringify(value));
 }
 
-
-class ToDelete {
-  constructor() {
-    this.removed = [toDeleteMaps];
-  }
-}
-
-/*
-const postDelOptions = {
-  method: 'POST',
-  mode: 'no-cors',
-  credentials: 'include',
-  headers: {
-    Authorization: 'Basic ' + btoa(USER + ':' + PASS),
-    ContentType: 'application/json',
-  },
-  body: JSON.stringify(new ToDelete)
-}
-*/
-
-
 removeMapsButton.addEventListener("click", async function() {
-  mapList = await fetch(URLmaplist, new GetOptions(AUTH))
+  let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
     .then(res => res.json())
-    .then(data =>
-      toDeleteMaps = data.items[0].meta.id)
+    .then(data => data.items[0].meta.id)     
 });
 
-
-
-//ToDO
-//firstChild
 document.getElementById('barrelButton').addEventListener("click", function() {
-  while (resultDiv.firstChild) {
+  while (resultDiv.firstChild !== resultDiv.lastChild) {
     resultDiv.removeChild(resultDiv.lastChild);
   }
 })
