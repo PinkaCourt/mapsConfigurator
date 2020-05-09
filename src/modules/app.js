@@ -8,6 +8,7 @@ class App extends Component {
       {id:'geolocation', buttonID: 'getGeolocation', value: 'Get Geolocation'},
       {id:'addingMarkers', buttonID: 'addingMarkersButton', value: 'Map List'},
       {id:'removeMaps', buttonID: 'removeMapsButton', value: 'Remove Maps'},
+      {id:'Camerasbutton', buttonID: 'getCamerasbutton', value: 'Get cameras'},
       {id:'resultDiv', buttonID: 'barrelButton', value: 'do a barrel roll'}
     ],
     forms: [
@@ -38,6 +39,7 @@ class App extends Component {
         <Step id={steps[2].id} buttonID={steps[2].buttonID} value={steps[2].value} />
         <Step id={steps[3].id} buttonID={steps[3].buttonID} value={steps[3].value} />
         <Step id={steps[4].id} buttonID={steps[4].buttonID} value={steps[4].value} />
+        <Step id={steps[5].id} buttonID={steps[5].buttonID} value={steps[5].value} />
 
       </div>
       );

@@ -25,12 +25,14 @@ const AUTH = 'Basic ' + btoa(USER + ':' + PASS);
 
 const URL = 'http://' + IP + ':' + PORT
 const URLhosts = URL + '/hosts'
-const URLchangeMap=   URL + '/v1/maps:change'
+const URLcameraList = URL + '/camera/list'
+const URLchangeMap =   URL + '/v1/maps:change'
 const URLmaplist =   URL + '/v1/maps?view=VIEW_MODE_ONLY_META'
 const getHostButton = document.getElementById('getHost')
 const addingMarkersButton = document.getElementById('addingMarkersButton')
 const removeMapsButton = document.getElementById('removeMapsButton')
 const resultDiv = document.getElementById('resultDiv')
+const getCamerasbutton = document.getElementById('getCamerasbutton')
 
 let toDeleteMaps = [];
 
@@ -60,7 +62,6 @@ createMapButton.addEventListener("click", async function() {
 });
 
 addingMarkersButton.addEventListener("click", async function() {
-
   let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
     .then(res => res.json())
     .then( data => 
@@ -68,8 +69,6 @@ addingMarkersButton.addEventListener("click", async function() {
       );
   makeElement('resultDiv', toDeleteMaps);
 });
-
-//var geoPosition
 
 document.getElementById('getGeolocation').addEventListener("click", function() {
   function success (position) {
@@ -89,7 +88,6 @@ removeMapsButton.addEventListener("click", async function() {
   let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
     .then(res => res.json())
     .then(data => {
-      let toDeleteMaps = [];
       data.items.map(selectID)})
     .then(() =>
         fetch(URLchangeMap, new PostOptions(AUTH, new ToDelete(toDeleteMaps)))
@@ -102,3 +100,19 @@ document.getElementById('barrelButton').addEventListener("click", function() {
     resultDiv.removeChild(resultDiv.lastChild);
   }
 })
+
+let camerasID = [];
+
+function selectCameraID(e) {
+  let value = e.displayId;
+  camerasID.push(value);
+}
+
+getCamerasbutton.addEventListener("click", async function() {
+  let camerasArray = await fetch(URLcameraList, new GetOptions(AUTH))
+    .then(res => res.json())
+    .then(data => {
+      data.cameras.map(selectCameraID)
+    })
+  makeElement('resultDiv', camerasID);  
+});
