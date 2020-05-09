@@ -5,7 +5,6 @@ import App from './modules/App'
 import makeElement from './func/makeElement.js'
 import {GetOptions} from "./func/httpapi.js"
 import {PostOptions} from "./func/httpapi.js"
-
 import {ToCreate} from "./func/bodys.js"
 import {ToDelete} from "./func/bodys.js"
 //import {MapStr} from "./func/bodys.js"
@@ -28,9 +27,6 @@ const URL = 'http://' + IP + ':' + PORT
 const URLhosts = URL + '/hosts'
 const URLchangeMap=   URL + '/v1/maps:change'
 const URLmaplist =   URL + '/v1/maps?view=VIEW_MODE_ONLY_META'
-
-
-//const providerID = '9cb89d76-67e9-47cf-8137-b9ee9fc46388';
 const getHostButton = document.getElementById('getHost')
 const addingMarkersButton = document.getElementById('addingMarkersButton')
 const removeMapsButton = document.getElementById('removeMapsButton')
@@ -40,9 +36,8 @@ let toDeleteMaps = [];
 
 function selectID(e) {
   let value = e.meta.id;
-  toDeleteMaps.push(JSON.stringify(value));
+  toDeleteMaps.push(value);
 }
-
 
 getHostButton.addEventListener("click", async function() {
   let host = await fetch(URLhosts, new GetOptions(AUTH))
@@ -54,13 +49,6 @@ getHostButton.addEventListener("click", async function() {
       makeElement('resultDiv', data[0])
     });
 });
-/*
-function  getUuid() {
-  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  )
-}
-*/
 
 createMapButton.addEventListener("click", async function() {
   let map = await fetch(URLchangeMap, new PostOptions(AUTH, new ToCreate))
@@ -71,16 +59,17 @@ createMapButton.addEventListener("click", async function() {
       )
 });
 
-
 addingMarkersButton.addEventListener("click", async function() {
+
   let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
     .then(res => res.json())
-    .then(data =>
-      data.items.map(selectID))
-  makeElement('resultDiv', mapList);
+    .then( data => 
+      data.items.map(selectID)
+      );
+  makeElement('resultDiv', toDeleteMaps);
 });
 
-var geoPosition
+//var geoPosition
 
 document.getElementById('getGeolocation').addEventListener("click", function() {
   function success (position) {
@@ -93,17 +82,17 @@ document.getElementById('getGeolocation').addEventListener("click", function() {
   function error (error) {
     console.log(error)
   }
-
-  geoPosition = navigator.geolocation.getCurrentPosition(success,  error  )
+  let geoPosition = navigator.geolocation.getCurrentPosition(success,  error  )
 });
 
 removeMapsButton.addEventListener("click", async function() {
   let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
     .then(res => res.json())
-    .then(data => 
-      array = data.items.map(selectID))
+    .then(data => {
+      let toDeleteMaps = [];
+      data.items.map(selectID)})
     .then(() =>
-        fetch(URLchangeMap, new ToDelete(array))
+        fetch(URLchangeMap, new PostOptions(AUTH, new ToDelete(toDeleteMaps)))
         .then(res => res.json())
         )     
 });

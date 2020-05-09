@@ -30,9 +30,9 @@ export class ToCreate {
     }
   }
 
- export  class ToDelete {
+ export class ToDelete {
     constructor(array) {
-      this.removed = [array];
+      this.removed = new Set(array);
     }
   }
   
