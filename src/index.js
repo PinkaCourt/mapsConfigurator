@@ -9,6 +9,8 @@ import {ToCreate} from "./func/bodys.js"
 import {ToDelete} from "./func/bodys.js"
 import {randomDelta} from "./func/random.js"
 import {mathSymbolRandom} from "./func/random.js"
+import {Data} from "./func/data.js"
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +26,7 @@ const PASS = document.getElementById('PASS').value
 const AUTH = 'Basic ' + btoa(USER + ':' + PASS);
 
 const URL = 'http://' + IP + ':' + PORT
+const URLgRPC = URL + '/grpc'
 const URLhosts = URL + '/hosts'
 const URLcameraList = URL + '/camera/list'
 const URLchangeMap =   URL + '/v1/maps:change'
@@ -118,12 +121,19 @@ getCamerasbutton.addEventListener("click", async function() {
   makeElement('resultDiv', camerasID);  
 });
 
+//console.log(mathSymbolRandom(randomDelta(), 1))
+
 addCamerasOnMap.addEventListener("click", async function() {
-  console.log(mathSymbolRandom(randomDelta(), 1))
-  /*let camerasArray = await fetch(URLcameraList, new GetOptions(AUTH))
+  console.log(mathSymbolRandom(randomDelta(), 1));
+
+  let x = localStorage.getItem('longitude');
+  let y = localStorage.getItem('latitude')
+
+
+  console.log(new Data(x, y, 'COURT', 1));
+
+  let request = await fetch(URLgRPC, new PostOptions(AUTH, new Data(x, y, 'COURT', 1)))
     .then(res => res.json())
-    .then(data => {
-      data.cameras.map(selectCameraID)
-    })
-  makeElement('resultDiv', camerasID);  */
+
+  //makeElement('resultDiv', camerasID); 
 });
