@@ -7,8 +7,8 @@ import {GetOptions} from "./func/httpapi.js"
 import {PostOptions} from "./func/httpapi.js"
 import {ToCreate} from "./func/bodys.js"
 import {ToDelete} from "./func/bodys.js"
-//import {MapStr} from "./func/bodys.js"
-//import {Map} from "./func/bodys.js"
+import {randomDelta} from "./func/random.js"
+import {mathSymbolRandom} from "./func/random.js"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -33,6 +33,7 @@ const addingMarkersButton = document.getElementById('addingMarkersButton')
 const removeMapsButton = document.getElementById('removeMapsButton')
 const resultDiv = document.getElementById('resultDiv')
 const getCamerasbutton = document.getElementById('getCamerasbutton')
+const addCamerasOnMap = document.getElementById('addCamerasOnMap')
 
 let toDeleteMaps = [];
 
@@ -115,4 +116,14 @@ getCamerasbutton.addEventListener("click", async function() {
       data.cameras.map(selectCameraID)
     })
   makeElement('resultDiv', camerasID);  
+});
+
+addCamerasOnMap.addEventListener("click", async function() {
+  console.log(mathSymbolRandom(randomDelta(), 1))
+  /*let camerasArray = await fetch(URLcameraList, new GetOptions(AUTH))
+    .then(res => res.json())
+    .then(data => {
+      data.cameras.map(selectCameraID)
+    })
+  makeElement('resultDiv', camerasID);  */
 });
