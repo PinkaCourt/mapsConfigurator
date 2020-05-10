@@ -121,19 +121,14 @@ getCamerasbutton.addEventListener("click", async function() {
   makeElement('resultDiv', camerasID);  
 });
 
-//console.log(mathSymbolRandom(randomDelta(), 1))
-
 addCamerasOnMap.addEventListener("click", async function() {
   console.log(mathSymbolRandom(randomDelta(), 1));
 
   let x = localStorage.getItem('longitude');
   let y = localStorage.getItem('latitude')
 
-
-  console.log(new Data(x, y, 'COURT', 1));
-
-  let request = await fetch(URLgRPC, new PostOptions(AUTH, new Data(x, y, 'COURT', 1)))
+  let request = await fetch(URLgRPC, new PostOptions(AUTH, new Data( '67364835-3908-47e4-b894-64915cff2476' , x, y, 'COURT', 1)))
     .then(res => res.json())
 
-  //makeElement('resultDiv', camerasID); 
+  makeElement('resultDiv', 'ok'); 
 });

@@ -1,10 +1,12 @@
 import {updateMarkers} from './methods.js'
 
 export class Data {
-    constructor(xCoofr, yCoord, host, cameraID) {
+    constructor(geoMapID, xCoofr, yCoord, host, cameraID) {
         this.method = updateMarkers;
         this.data = {
             changed : {
+              map_id: geoMapID,
+              updated: {
               position : {
                 x: xCoofr,
                 y: yCoord
@@ -16,6 +18,7 @@ export class Data {
                 video_frame_arrangement: new VideoFrameArrangement
               }
             }
+          }
           }
         }
     }
