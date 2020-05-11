@@ -1,14 +1,14 @@
 import {updateMarkers} from './methods.js'
 
 export class Data {
-    constructor(geoMapID, xCoofr, yCoord, host, cameraID) {
+    constructor(geoMapID, xCoord, yCoord, host, cameraID) {
         this.method = updateMarkers;
         this.data = {
             changed : {
               map_id: geoMapID,
               updated: {
               position : {
-                x: xCoofr,
+                x: xCoord,
                 y: yCoord
               },
               component_name : 'hosts/' + host + '/DeviceIpint.' + cameraID + '/SourceEndpoint.video:0:0',
