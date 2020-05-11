@@ -6,7 +6,7 @@ class App extends Component {
     steps: [
       {id:'createMap', buttonID: 'createMapButton', value: 'To create Map'},
       {id:'geolocation', buttonID: 'getGeolocation', value: 'Get Geolocation'},
-      {id:'addingMarkers', buttonID: 'addingMarkersButton', value: 'Map List'},
+      {id:'maplist', buttonID: 'maplistButton', value: 'Map List'},
       {id:'removeMaps', buttonID: 'removeMapsButton', value: 'Remove Maps'},
       {id:'Cameras', buttonID: 'getCamerasbutton', value: 'Get cameras'},
       {id:'AddingCameras', buttonID: 'addCamerasOnMap', value: 'Adding markers on map'},

@@ -42,7 +42,7 @@ const URLchangeMap =   URL + '/v1/maps:change'
 const URLmaplist =   URL + '/v1/maps?view=VIEW_MODE_ONLY_META'
 
 const getHostButton = document.getElementById('getHost')
-const addingMarkersButton = document.getElementById('addingMarkersButton')
+const maplistButton = document.getElementById('maplistButton')
 const removeMapsButton = document.getElementById('removeMapsButton')
 const resultDiv = document.getElementById('resultDiv')
 const getCamerasbutton = document.getElementById('getCamerasbutton')
@@ -60,7 +60,7 @@ listener(getHostButton, getHost(AUTH))
 listener(createMapButton, createMap(AUTH))
 listener(removeMapsButton, getMaps(AUTH))
 
-addingMarkersButton.addEventListener("click", async function() {
+maplistButton.addEventListener("click", async function() {
   let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
     .then(res => res.json())
     .then( data => 
