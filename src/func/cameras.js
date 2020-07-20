@@ -7,7 +7,7 @@ import {URLhosts} from '../constants/url.js'
 
 import {GetOptions} from './httpapi.js'
 import {PostOptions} from './httpapi.js'
-//import AUTH from "../index.js"
+import AUTH from '../constants/input.js'
 //import {makeElement} from './makeElement.js'
 let camerasID = [];
 let toDeleteMaps = [];
@@ -21,9 +21,9 @@ import {ToCreate} from "./bodys.js"
 //let camerasID = [];
 //let toDeleteMaps = [];
 
-export async function getCameras (auth) {
+export async function getCameras (AUTH) {
 	let camerasID = [];
-	await fetch(URLcameraList, new GetOptions(auth))
+	await fetch(URLcameraList, new GetOptions(AUTH))
 	.then(res => res.json())
 	.then(data => {
 		data.cameras.map(selectCameraID)
@@ -32,28 +32,32 @@ export async function getCameras (auth) {
 	//console.log('camerasID' + camerasID)
 }
 
-export async function getMaps (auth) {
-	let mapList = await fetch(URLmaplist, new GetOptions(auth))
+export async function getMaps (AUTH) {
+	let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
 		.then(res => res.json())
     	.then(data => {
 			data.items.map(selectID)})
 }
 
-export async function deleteMaps (auth, mapsArray) {
-	await fetch(URLchangeMap, new PostOptions(auth, new ToDelete(mapsArray)))
+export async function deleteMaps (AUTH, mapsArray) {
+	await fetch(URLchangeMap, new PostOptions(AUTH, new ToDelete(mapsArray)))
 	.then(res => res.json())
 }
-
-export async function getHost (auth) {
-	let host = await fetch(URLhosts, new GetOptions(auth))
+// это работает! не трогай
+export async function getHost (AUTH) {
+	let host = await fetch(URLhosts, new GetOptions(AUTH))
     .then(res => res.json())
     .then(data => {data[0]})
 }
 
-export async function createMap (auth) {
-  let mapID = await fetch(URLchangeMap, new PostOptions(auth, new ToCreate))
+export function log(a) {
+	console.log('log' + a)
+  }
+
+export async function createMap (AUTH) {
+  let mapID = await fetch(URLchangeMap, new PostOptions(AUTH, new ToCreate))
     .then(res =>
-      fetch(URLmaplist, new GetOptions(auth))
+      fetch(URLmaplist, new GetOptions(AUTH))
       .then(res => res.json())
       .then(data => data.items[0].meta.id)
       )

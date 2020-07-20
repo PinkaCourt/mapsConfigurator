@@ -1,7 +1,5 @@
-
-const IP =  '192.168.1.65'
-const PORT = '8001'
-
+import {IP} from '../constants/input.js'
+import {PORT} from '../constants/input.js'
 
 export const URL = 'http://' + IP + ':' + PORT
 export const URLgRPC = URL + '/grpc'

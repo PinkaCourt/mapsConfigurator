@@ -13,10 +13,27 @@ import {Data} from "./func/data.js"
 
 import {getCameras} from "./func/cameras.js"
 import {getHost} from "./func/cameras.js"
+import {log} from "./func/cameras.js"
 import {createMap} from "./func/cameras.js"
 import {getMaps} from "./func/cameras.js"
 
 import {listener} from "./func/listeners.js"
+
+import {URL} from './constants/url.js'
+import {URLcameraList} from './constants/url.js'
+import {URLmaplist} from './constants/url.js'
+import {URLchangeMap} from './constants/url.js'
+import {URLhosts} from './constants/url.js'
+
+//const
+
+import {IP} from './constants/input.js'
+import {PORT} from './constants/input.js'
+//import {USER} from './constants/input.js'
+//import {PASS} from './constants/input.js'
+import {AUTH} from './constants/input.js'
+
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,20 +43,22 @@ ReactDOM.render(
 );
 
 
-
+/*
 const IP =  document.getElementById('IP').value
 const PORT = document.getElementById('PORT').value
 const USER = document.getElementById('USER').value
 const PASS = document.getElementById('PASS').value
 const AUTH = 'Basic ' + btoa(USER + ':' + PASS);
+*/
 
-
+/*
 const URL = 'http://' + IP + ':' + PORT
 const URLgRPC = URL + '/grpc'
 const URLhosts = URL + '/hosts'
 const URLcameraList = URL + '/camera/list'
 const URLchangeMap =   URL + '/v1/maps:change'
 const URLmaplist =   URL + '/v1/maps?view=VIEW_MODE_ONLY_META'
+*/
 
 const getHostButton = document.getElementById('getHost')
 const maplistButton = document.getElementById('maplistButton')
@@ -56,10 +75,25 @@ function selectID(e) {
   toDeleteMaps.push(value);
 }
 */
-listener(getHostButton, getHost(AUTH))
-listener(createMapButton, createMap(AUTH))
-listener(removeMapsButton, getMaps(AUTH))
 
+/*
+function log(a) {
+  console.log('log' + a)
+}
+*/
+//listener(getHostButton, log())
+
+//getHostButton.addEventListener("click", getHost(URLhosts, new GetOptions(AUTH)));
+//getHostButton.addEventListener("click", log);
+
+//listener(createMapButton, createMap(AUTH))
+//listener(removeMapsButton, getMaps(AUTH))
+
+//maplistButton.addEventListener("click", getMaps (AUTH));
+
+
+
+/*
 maplistButton.addEventListener("click", async function() {
   let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
     .then(res => res.json())
@@ -68,6 +102,7 @@ maplistButton.addEventListener("click", async function() {
       );
   makeElement('resultDiv', toDeleteMaps);
 });
+*/
 
 document.getElementById('getGeolocation').addEventListener("click", function() {
   function success (position) {

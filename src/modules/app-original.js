@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import Step from './Step.js'
 import Form from './Form.js'
@@ -31,11 +32,11 @@ class App extends Component {
       {id:'PASS', value: 'root'}
     ]
   }
-/*
-пнем хосты ручками
-handleClick - это событие реакта. 
-бля
-*/
+
+//пнем хосты ручками
+//handleClick - это событие реакта. 
+//бля
+
 
   handleClick(AUTH) {
     getHost(AUTH);
@@ -56,10 +57,19 @@ handleClick - это событие реакта.
         <button onClick={this.handleClick.bind(this, AUTH)} className="button" id="getHost"> GET HOST </button>
         </fieldset>
 
+        <Step id={steps[0].id} buttonID={steps[0].buttonID} value={steps[0].value} />
+        <Step id={steps[1].id} buttonID={steps[1].buttonID} value={steps[1].value} />
+        <Step id={steps[2].id} buttonID={steps[2].buttonID} value={steps[2].value} />
+        <Step id={steps[3].id} buttonID={steps[3].buttonID} value={steps[3].value} />
+        <Step id={steps[4].id} buttonID={steps[4].buttonID} value={steps[4].value} />
+        <Step id={steps[5].id} buttonID={steps[5].buttonID} value={steps[5].value} />
+        <Step id={steps[6].id} buttonID={steps[6].buttonID} value={steps[6].value} />
+
       </div>
       );
   }
 }
 
 export default App;
+*/
 
