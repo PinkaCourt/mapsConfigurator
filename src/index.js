@@ -6,13 +6,11 @@ import makeElement from './func/makeElement.js'
 import {GetOptions} from "./func/httpapi.js"
 import {PostOptions} from "./func/httpapi.js"
 //import {ToCreate} from "./func/bodys.js"
-//import {ToDelete} from "./func/bodys.js"
 import {randomDelta} from "./func/random.js"
 import {mathSymbolRandom} from "./func/random.js"
 import {Data} from "./func/data.js"
 
 import {getCameras} from "./func/cameras.js"
-import {getHost} from "./func/cameras.js"
 import {log} from "./func/cameras.js"
 import {createMap} from "./func/cameras.js"
 import {getMaps} from "./func/cameras.js"
@@ -26,11 +24,6 @@ import {URLchangeMap} from './constants/url.js'
 import {URLhosts} from './constants/url.js'
 
 //const
-
-import {IP} from './constants/input.js'
-import {PORT} from './constants/input.js'
-//import {USER} from './constants/input.js'
-//import {PASS} from './constants/input.js'
 import {AUTH} from './constants/input.js'
 
 
@@ -42,23 +35,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-
-/*
-const IP =  document.getElementById('IP').value
-const PORT = document.getElementById('PORT').value
-const USER = document.getElementById('USER').value
-const PASS = document.getElementById('PASS').value
-const AUTH = 'Basic ' + btoa(USER + ':' + PASS);
-*/
-
-/*
-const URL = 'http://' + IP + ':' + PORT
-const URLgRPC = URL + '/grpc'
-const URLhosts = URL + '/hosts'
-const URLcameraList = URL + '/camera/list'
-const URLchangeMap =   URL + '/v1/maps:change'
-const URLmaplist =   URL + '/v1/maps?view=VIEW_MODE_ONLY_META'
-*/
 
 const getHostButton = document.getElementById('getHost')
 const maplistButton = document.getElementById('maplistButton')
