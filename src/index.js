@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './modules/app.js'
 import CameraList from './modules/cameralist/cameralist.js' 
-
+import Map from './modules/map/map.js' 
 
 
 import makeElement from './func/makeElement.js'
@@ -49,6 +49,13 @@ ReactDOM.render(
 );
 
 
+//Map
+ReactDOM.render(
+  <React.StrictMode>
+    <Map />
+  </React.StrictMode>,
+  document.getElementById('view_map')
+);
 
 
 

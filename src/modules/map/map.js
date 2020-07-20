@@ -18,7 +18,7 @@ const URLhosts = URL + '/hosts'
 // to delete
 */
 
-class CameraList extends Component {
+class Map extends Component {
   /*
   state = {
     steps: [
@@ -51,11 +51,11 @@ class CameraList extends Component {
     const forms = this.state.forms
     */
     return (
-      <ul className="camera-list">
+      <div className="mapa">
 
-      </ul>
+      </div>
       );
   }
 }
 
-export default CameraList;
+export default Map;

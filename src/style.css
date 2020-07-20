@@ -1,7 +1,19 @@
 .step {
   display: block;
+  right: 5px;
   border: 2px solid gray;
-  width: 500px;
+  width: 100px;
   margin: 10px 5px;
   padding: 10px;
+}
+
+
+#camera_list {
+  display: block;
+  left: 10px;
+  border: 2px solid rgb(182, 18, 18);
+  width: 100px;
+  margin: 10px 5px;
+  padding: 10px;
+
 }
