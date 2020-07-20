@@ -1,6 +1,9 @@
 //эта не готова
-/*
+
+
 import React, {Component} from 'react';
+
+/*
 import Step from './Step.js'
 import Form from './Form.js'
 import {log} from '../func/cameras.js'
@@ -13,9 +16,10 @@ import {AUTH} from '../constants/input.js'
 const URL = 'http://' + IP + ':' + PORT
 const URLhosts = URL + '/hosts'
 // to delete
-
+*/
 
 class CameraList extends Component {
+  /*
   state = {
     steps: [
       {id:'createMap', buttonID: 'createMapButton', value: 'To create Map'},
@@ -33,34 +37,25 @@ class CameraList extends Component {
       {id:'PASS', value: 'root'}
     ]
   }
-/
-//handleClick - это событие реакта. 
-/
+  */
 
+
+/*
+//handleClick - это событие реакта. 
   handleClick(AUTH) {
     getHost(AUTH);
   }
-
+*/
   render() {
-    const steps = this.state.steps
+    /*const steps = this.state.steps
     const forms = this.state.forms
+    */
     return (
-      <div>
-        <fieldset className="step input" id="input">
-        <legend>Данные сервера</legend>
-        <Form id={forms[0].id} value={forms[0].value} />
-        <Form id={forms[1].id} value={forms[1].value} />
-        <Form id={forms[2].id} value={forms[2].value} />
-        <Form id={forms[3].id} value={forms[3].value} />
+      <ul>
 
-        <button onClick={this.handleClick.bind(this, AUTH)} className="button" id="getHost"> GET HOST </button>
-        </fieldset>
-
-      </div>
+      </ul>
       );
   }
 }
 
-export default App;
-
-*/
+export default CameraList;

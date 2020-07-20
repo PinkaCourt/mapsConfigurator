@@ -1,7 +1,11 @@
 import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './modules/App.js'
+import App from './modules/app.js'
+import CameraList from './modules/cameralist/cameralist.js' 
+
+
+
 import makeElement from './func/makeElement.js'
 import {GetOptions} from "./func/httpapi.js"
 import {PostOptions} from "./func/httpapi.js"
@@ -36,14 +40,18 @@ ReactDOM.render(
 
 //CameraList
 
-/*
+
 ReactDOM.render(
   <React.StrictMode>
     <CameraList />
   </React.StrictMode>,
   document.getElementById('camera_list')
 );
-*/
+
+
+
+
+
 
 /*
 const getHostButton = document.getElementById('getHost')
