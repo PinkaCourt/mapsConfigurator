@@ -26,16 +26,26 @@ import {URLhosts} from './constants/url.js'
 //const
 import {AUTH} from './constants/input.js'
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('topbar')
 );
 
 
+//CameraList
+
+/*
+ReactDOM.render(
+  <React.StrictMode>
+    <CameraList />
+  </React.StrictMode>,
+  document.getElementById('camera_list')
+);
+*/
+
+/*
 const getHostButton = document.getElementById('getHost')
 const maplistButton = document.getElementById('maplistButton')
 const removeMapsButton = document.getElementById('removeMapsButton')
@@ -43,6 +53,8 @@ const resultDiv = document.getElementById('resultDiv')
 const getCamerasbutton = document.getElementById('getCamerasbutton')
 const addCamerasOnMap = document.getElementById('addCamerasOnMap')
 const createMapButton = document.getElementById('createMapButton')
+*/
+
 
 //let toDeleteMaps = [];
 /*
@@ -80,6 +92,7 @@ maplistButton.addEventListener("click", async function() {
 });
 */
 
+/*
 document.getElementById('getGeolocation').addEventListener("click", function() {
   function success (position) {
     let longitude = position.coords.longitude;
@@ -93,19 +106,26 @@ document.getElementById('getGeolocation').addEventListener("click", function() {
   }
   let geoPosition = navigator.geolocation.getCurrentPosition(success,  error  )
 });
+*/
 
+/*
 removeMapsButton.addEventListener("click", getMaps(AUTH)
-    /*.then(() =>
+    .then(() =>
         fetch(URLchangeMap, new PostOptions(AUTH, new ToDelete(toDeleteMaps)))
         .then(res => res.json())
-        )   } */ 
+        )   } 
 );
+*/
 
+
+/*
 document.getElementById('barrelButton').addEventListener("click", function() {
   while (resultDiv.firstChild !== resultDiv.lastChild) {
     resultDiv.removeChild(resultDiv.lastChild);
   }
 })
+*/
+
 
 //let camerasID = [];
 /*
@@ -114,9 +134,11 @@ function selectCameraID(e) {
   camerasID.push(value);
 }
 */
+
+/*
 getCamerasbutton.addEventListener("click", getCameras (AUTH) 
 );
-  
+  */
 
 
 
@@ -129,7 +151,7 @@ getCamerasbutton.addEventListener("click", getCameras (AUTH)
   makeElement('resultDiv', camerasID);  
 */
 
-
+/*
 addCamerasOnMap.addEventListener("click", async function() {
   console.log(mathSymbolRandom(randomDelta(), 1));
 
@@ -141,3 +163,5 @@ addCamerasOnMap.addEventListener("click", async function() {
 
   makeElement('resultDiv', 'ok'); 
 });
+
+*/
