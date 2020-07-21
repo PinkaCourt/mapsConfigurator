@@ -52,6 +52,7 @@ class CameraList extends Component {
     */
     return (
       <ul className="camera-list">
+        egdrsh
 
       </ul>
       );

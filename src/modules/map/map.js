@@ -52,6 +52,7 @@ class Map extends Component {
     */
     return (
       <div className="mapa">
+        ftghft
 
       </div>
       );
