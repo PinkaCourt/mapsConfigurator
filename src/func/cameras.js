@@ -9,7 +9,7 @@ import {GetOptions} from './httpapi.js'
 import {PostOptions} from './httpapi.js'
 import AUTH from '../constants/input.js'
 //import {makeElement} from './makeElement.js'
-let camerasID = [];
+//let camerasID = [];
 let toDeleteMaps = [];
 
 import {selectCameraID} from './select.js'
@@ -21,6 +21,8 @@ import {ToCreate} from "./bodys.js"
 //let camerasID = [];
 //let toDeleteMaps = [];
 
+/*
+// перенесен в модули списка камер
 export async function getCameras (AUTH) {
 	let camerasID = [];
 	await fetch(URLcameraList, new GetOptions(AUTH))
@@ -31,6 +33,7 @@ export async function getCameras (AUTH) {
 	//makeElement('resultDiv', camerasID);
 	//console.log('camerasID' + camerasID)
 }
+*/
 
 export async function getMaps (AUTH) {
 	let mapList = await fetch(URLmaplist, new GetOptions(AUTH))

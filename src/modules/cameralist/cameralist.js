@@ -1,62 +1,41 @@
 //эта не готова
 
-
 import React, {Component} from 'react';
 
-/*
-import Step from './Step.js'
-import Form from './Form.js'
-import {log} from '../func/cameras.js'
-import {getHost} from '../func/cameras.js'
-import {GetOptions} from '../func/httpapi.js'
-// to delete
-import {IP} from '../constants/input.js'
-import {PORT} from '../constants/input.js'
-import {AUTH} from '../constants/input.js'
-const URL = 'http://' + IP + ':' + PORT
-const URLhosts = URL + '/hosts'
-// to delete
-*/
+//генерит только ul. Без внутренностей
+import {AUTH} from '../../constants/input.js'
+import {getCameras} from './func.js'
+import Item from './item.js'
+//console.log( 'список камер'  + getCameras(AUTH));
+//const cameras = getCameras(AUTH);
 
-class CameraList extends Component {
-  /*
+class CameraListContainer extends Component {
+  // state - состояние
   state = {
-    steps: [
-      {id:'createMap', buttonID: 'createMapButton', value: 'To create Map'},
-      {id:'geolocation', buttonID: 'getGeolocation', value: 'Get Geolocation'},
-      {id:'maplist', buttonID: 'maplistButton', value: 'Map List'},
-      {id:'removeMaps', buttonID: 'removeMapsButton', value: 'Remove Maps'},
-      {id:'Cameras', buttonID: 'getCamerasbutton', value: 'Get cameras'},
-      {id:'AddingCameras', buttonID: 'addCamerasOnMap', value: 'Adding markers on map'},
-      {id:'resultDiv', buttonID: 'barrelButton', value: 'do a barrel roll'}
-    ],
-    forms: [
-      {id:'IP', value: '192.168.1.36'},
-      {id:'PORT', value: '8001'},
-      {id:'USER', value: 'root'},
-      {id:'PASS', value: 'root'}
+    /*cameras: getCameras(AUTH)*/
+    cameras: [
+      {id:'1', name:'camera1'},
+      {id:'2', name:'camera2'}
     ]
-  }
-  */
+	};
 
-
-/*
-//handleClick - это событие реакта. 
-  handleClick(AUTH) {
-    getHost(AUTH);
-  }
-*/
   render() {
-    /*const steps = this.state.steps
-    const forms = this.state.forms
-    */
+
+    //const cameras = this.state.cameras;
     return (
       <ul className="camera-list">
-        egdrsh
-
+        {this.state.cameras.map((e, index) => {
+          return (
+            <Item 
+              key = {index}
+              id = {e.id}
+              name = {e.name}  
+              />
+          )
+        })
+        }
       </ul>
       );
   }
 }
-
-export default CameraList;
+export default CameraListContainer;

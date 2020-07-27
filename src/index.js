@@ -2,9 +2,11 @@ import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './modules/app.js'
-import CameraList from './modules/cameralist/cameralist.js' 
+import CameraListContainer from './modules/cameralist/cameralist.js' 
+//import {getCameras} from './modules/cameralist/func.js' 
 import Map from './modules/map/map.js' 
-
+//const
+//import {AUTH} from './constants/input.js'
 
 import makeElement from './func/makeElement.js'
 import {GetOptions} from "./func/httpapi.js"
@@ -13,22 +15,16 @@ import {PostOptions} from "./func/httpapi.js"
 import {randomDelta} from "./func/random.js"
 import {mathSymbolRandom} from "./func/random.js"
 import {Data} from "./func/data.js"
-
-import {getCameras} from "./func/cameras.js"
 import {log} from "./func/cameras.js"
 import {createMap} from "./func/cameras.js"
 import {getMaps} from "./func/cameras.js"
-
 import {listener} from "./func/listeners.js"
-
 import {URL} from './constants/url.js'
-import {URLcameraList} from './constants/url.js'
 import {URLmaplist} from './constants/url.js'
 import {URLchangeMap} from './constants/url.js'
 import {URLhosts} from './constants/url.js'
 
-//const
-import {AUTH} from './constants/input.js'
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -40,10 +36,9 @@ ReactDOM.render(
 
 //CameraList
 
-
 ReactDOM.render(
   <React.StrictMode>
-    <CameraList />
+    <CameraListContainer />
   </React.StrictMode>,
   document.getElementById('camera_list')
 );
@@ -57,8 +52,17 @@ ReactDOM.render(
   document.getElementById('view_map')
 );
 
+/*
+у Андрюхи
+
+document.body.appendChild(storeContainer);
+	ReactDOM.render(<StorePanel />, storeContainer);
+
+*/
 
 
+
+//getCameras(AUTH);
 
 /*
 const getHostButton = document.getElementById('getHost')

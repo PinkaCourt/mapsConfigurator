@@ -4,7 +4,14 @@ export function selectID(e) {
   }
 
 export function selectCameraID(e) {
-    let value = e.displayId;
-    //camerasID.push(value);
-    return value;
+  let camera = {
+    id:'',
+    name:''
+  };
+  let displayId = e.displayId;
+  let displayName = e.displayName;
+  camera.id = displayId;
+  camera.name = displayName;
+  //console.log(camera);
+  return camera;
   }
