@@ -78,6 +78,22 @@ const {
 */
 
 class CameraListContainer extends Component {
+  constructor() {
+    super();
+    this.state = { data: [] };
+  }
+
+  async getCameras (AUTH) {
+    const res  = await fetch(URLcameraList, new GetOptions(AUTH))
+    const json = await res.json().cameras;
+    this.setState({ data: json });
+  }
+
+
+
+
+
+  /*
     state = {
       cameras: [
         {id:'1', name:'camera1'} ,
@@ -85,7 +101,7 @@ class CameraListContainer extends Component {
         {id:'23', name:'camera37'}
       ]
     }
-
+*/
     /*
     
     state = {
@@ -106,12 +122,12 @@ class CameraListContainer extends Component {
   render() {
     return (
       <ul className="camera-list">
-        {this.state.cameras.map((e, index) => {
+        {this.state.data.map((e, index) => {
           return (
             <Item 
               key = {index}
-              id = {e.id}
-              name = {e.name}  
+              id = {e.displayId}
+              name = {e.displayName}  
               />
           )
         })
