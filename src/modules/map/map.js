@@ -1,6 +1,4 @@
 //эта не готова
-
-
 import React, {Component} from 'react';
 
 /*
@@ -52,7 +50,7 @@ class Map extends Component {
     */
     return (
       <div className="mapa">
-        ftghft
+        ТУТ БУДЕТ КАРТА
 
       </div>
       );
