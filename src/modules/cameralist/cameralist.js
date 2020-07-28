@@ -85,8 +85,9 @@ class CameraListContainer extends Component {
 
   async getCameras (AUTH) {
     const res  = await fetch(URLcameraList, new GetOptions(AUTH))
-    const json = await res.json().cameras;
-    this.setState({ data: json });
+    const json = await res.json();
+    console.log(json); 
+    this.setState({ data: json.cameras });
   }
 
 
