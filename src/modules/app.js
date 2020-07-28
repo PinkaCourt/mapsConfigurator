@@ -42,20 +42,32 @@ handleClick - это событие реакта.
   }
 
   render() {
-    const steps = this.state.steps
-    const forms = this.state.forms
     return (
       <div>
         <fieldset className="step input" id="input">
         <legend>Данные сервера</legend>
-        <Form id={forms[0].id} value={forms[0].value} />
-        <Form id={forms[1].id} value={forms[1].value} />
-        <Form id={forms[2].id} value={forms[2].value} />
-        <Form id={forms[3].id} value={forms[3].value} />
-
+        {this.state.forms.map((e, index) => {
+          return (
+            <Form 
+              key = {index}
+              id = {e.id}
+              value = {e.value}  
+              />
+          )
+        })}
         <button onClick={this.handleClick.bind(this, AUTH)} className="button" id="getHost"> GET HOST </button>
         </fieldset>
 
+        {this.state.steps.map((e, index) => {
+          return (
+            <Step 
+              key = {index}
+              id = {e.id}
+              buttonID = {e.buttonID}
+              value = {e.value}  
+              />
+          )
+        })}
       </div>
       );
   }

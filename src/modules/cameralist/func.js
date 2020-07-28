@@ -1,5 +1,5 @@
 // функции вызова списка камер
-import {GetOptions} from '../../func/httpapi.js'
+/*import {GetOptions} from '../../func/httpapi.js'
 import {URLcameraList} from '../../constants/url.js'
 import {selectCameraID} from '../../func/select.js'
 
@@ -14,5 +14,7 @@ export async function getCameras (AUTH) {
 		})
 	//makeElement('resultDiv', camerasID);
 	//console.log(cameras)
-	return cameras;
+	//return cameras;
 }
+
+*/
