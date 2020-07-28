@@ -6,9 +6,8 @@ body {
 }
 
 #topbar {
-  height: 148px;
+  height: 150px;
   background-color: #1a3566;
-
 }
 
 #main {
@@ -25,3 +24,18 @@ body {
   flex: 1 1;
   background-color: #585454;
 }
+
+.react_wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  height: 100%;
+  margin: 5px;
+}
+
+.button_list {
+  margin: 5px;
+  }
+

@@ -43,7 +43,7 @@ handleClick - это событие реакта.
 
   render() {
     return (
-      <div>
+      <div className="react_wrapper"> 
         <fieldset className="step input" id="input">
         <legend>Данные сервера</legend>
         {this.state.forms.map((e, index) => {
@@ -57,17 +57,19 @@ handleClick - это событие реакта.
         })}
         <button onClick={this.handleClick.bind(this, AUTH)} className="button" id="getHost"> GET HOST </button>
         </fieldset>
+        <div className="button_list">
 
-        {this.state.steps.map((e, index) => {
-          return (
-            <Step 
-              key = {index}
-              id = {e.id}
-              buttonID = {e.buttonID}
-              value = {e.value}  
-              />
-          )
-        })}
+          {this.state.steps.map((e, index) => {
+            return (
+              <Step 
+                key = {index}
+                id = {e.id}
+                buttonID = {e.buttonID}
+                value = {e.value}  
+                />
+            )
+          })}
+          </div>
       </div>
       );
   }
