@@ -29,16 +29,22 @@ class App extends Component {
       {id:'PORT', value: '8001'},
       {id:'USER', value: 'root'},
       {id:'PASS', value: 'root'}
-    ]
+    ],
+    hosts:[]
   }
 /*
 пнем хосты ручками
-handleClick - это событие реакта. 
+handle(Click) - это событие реакта. 
+в данном случае функция прослушки события - кликнули на кнопку- вызвали функцию
 бля
 */
 
-  handleClick(AUTH) {
-    getHost(AUTH);
+async handleClick(AUTH) {
+    /*getHost(AUTH);*/
+    const res = await fetch(URLhosts, new GetOptions(AUTH))
+    const json = await res.json();
+    console.log(json); 
+    this.setState({ hosts: json });
   }
 
   render() {
@@ -56,6 +62,11 @@ handleClick - это событие реакта.
           )
         })}
         <button onClick={this.handleClick.bind(this, AUTH)} className="button" id="getHost"> GET HOST </button>
+        <div className="hosts_list">
+          {this.state.hosts.map((e, index) => (
+            <span> {e} </span>
+          ))}
+          </div>
         </fieldset>
         <div className="button_list">
 
@@ -67,6 +78,7 @@ handleClick - это событие реакта.
                 buttonID = {e.buttonID}
                 value = {e.value}  
                 />
+            
             )
           })}
           </div>
