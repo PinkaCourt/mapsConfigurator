@@ -80,9 +80,11 @@ const {
 class CameraListContainer extends Component {
     state = {
       cameras: [
-      {id:'1', name:'camera1'} ,
-      {id:'2', name:'camera2'}
-      ]}
+        {id:'1', name:'camera1'} ,
+        {id:'2', name:'camera3'},
+        {id:'23', name:'camera37'}
+      ]
+    }
 
     /*
     
@@ -102,15 +104,14 @@ class CameraListContainer extends Component {
     
     */
   render() {
-    //const cameras = this.state.cameras;
     return (
       <ul className="camera-list">
         {this.state.cameras.map((e, index) => {
           return (
             <Item 
               key = {index}
-              id = {e.displayId}
-              name = {e.displayName}  
+              id = {e.id}
+              name = {e.name}  
               />
           )
         })
