@@ -8,10 +8,8 @@ import {GetOptions} from '../func/httpapi.js'
 import {IP} from '../constants/input.js'
 import {PORT} from '../constants/input.js'
 import {AUTH} from '../constants/input.js'
-const URL = 'http://' + IP + ':' + PORT
-const URLhosts = URL + '/hosts'
-// to delete
-
+import {URL} from '../constants/url.js'
+import {URLhosts} from '../constants/url.js'
 
 class App extends Component {
   state = {
@@ -40,7 +38,6 @@ handle(Click) - это событие реакта.
 */
 
 async handleClick(AUTH) {
-    /*getHost(AUTH);*/
     const res = await fetch(URLhosts, new GetOptions(AUTH))
     const json = await res.json();
     console.log(json); 
