@@ -1,56 +1,43 @@
 //эта не готова
 import React, {Component} from 'react';
+import MapBookMarks from './MapBookMarks.js'
+import {GetOptions} from '../../func/httpapi.js'
 
-/*
-import Step from './Step.js'
-import Form from './Form.js'
-import {log} from '../func/cameras.js'
-import {getHost} from '../func/cameras.js'
-import {GetOptions} from '../func/httpapi.js'
 // to delete
-import {IP} from '../constants/input.js'
-import {PORT} from '../constants/input.js'
-import {AUTH} from '../constants/input.js'
-const URL = 'http://' + IP + ':' + PORT
-const URLhosts = URL + '/hosts'
-// to delete
-*/
+import {IP} from '../../constants/input.js'
+import {PORT} from '../../constants/input.js'
+import {AUTH} from '../../constants/input.js'
+import {URLmaplist} from '../../constants/url.js'
 
 class Map extends Component {
-  /*
   state = {
-    steps: [
-      {id:'createMap', buttonID: 'createMapButton', value: 'To create Map'},
-      {id:'geolocation', buttonID: 'getGeolocation', value: 'Get Geolocation'},
-      {id:'maplist', buttonID: 'maplistButton', value: 'Map List'},
-      {id:'removeMaps', buttonID: 'removeMapsButton', value: 'Remove Maps'},
-      {id:'Cameras', buttonID: 'getCamerasbutton', value: 'Get cameras'},
-      {id:'AddingCameras', buttonID: 'addCamerasOnMap', value: 'Adding markers on map'},
-      {id:'resultDiv', buttonID: 'barrelButton', value: 'do a barrel roll'}
-    ],
-    forms: [
-      {id:'IP', value: '192.168.1.36'},
-      {id:'PORT', value: '8001'},
-      {id:'USER', value: 'root'},
-      {id:'PASS', value: 'root'}
-    ]
+    maps: []
   }
-  */
 
 
-/*
-//handleClick - это событие реакта. 
-  handleClick(AUTH) {
-    getHost(AUTH);
+  async handleGetMaps(AUTH) {
+    const res = await fetch(URLmaplist, new GetOptions(AUTH))
+    const json = await res.json();
+    this.setState({ maps: json.items });
   }
-*/
+
   render() {
-    /*const steps = this.state.steps
-    const forms = this.state.forms
-    */
     return (
-      <div className="mapa">
-        ТУТ БУДЕТ КАРТА
+      <div className="map-wrapper">
+        <div className="map-container">
+          ТУТ БУДЕТ КАРТА
+          </div>
+        <div className="map-toolbar">
+          <button onClick={this.handleGetMaps.bind(this, AUTH)} className="button"> GET MAPS </button>
+          {this.state.maps.map((e, index) => {
+            return (
+              <MapBookMarks 
+                key = {index}
+                name = {e.meta.name}
+                />
+            )
+          })}
+          </div>
 
       </div>
       );
