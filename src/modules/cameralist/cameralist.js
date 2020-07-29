@@ -83,16 +83,12 @@ class CameraListContainer extends Component {
     this.state = { data: [] };
   }
 
-  async getCameras (AUTH) {
+  async handleGetCameras (AUTH) {
     const res  = await fetch(URLcameraList, new GetOptions(AUTH))
     const json = await res.json();
     console.log(json); 
     this.setState({ data: json.cameras });
   }
-
-
-
-
 
   /*
     state = {
@@ -123,6 +119,10 @@ class CameraListContainer extends Component {
   render() {
     return (
       <ul className="camera-list">
+        <div className="buttonForCameraList">
+        <button onClick={this.handleGetCameras.bind(this, AUTH)} className="button"> GET Camera list </button>
+
+        </div>
         {this.state.data.map((e, index) => {
           return (
             <Item 
@@ -134,6 +134,7 @@ class CameraListContainer extends Component {
         })
         }
       </ul>
+
       );
   }
 }
