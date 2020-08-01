@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MapBookMarks = props =>
-  <div className="map-bm">
+  <div className="map_bm">
     <span> {props.name}</span>
     </div>
 

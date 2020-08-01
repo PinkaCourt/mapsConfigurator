@@ -47,21 +47,26 @@ li {
   list-style-type: none;
   }
 
-.map-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+.map_bm {
+  /*margin: 1px;*/
+  border: 2px solid red;
+  border-radius: 10px 10px  0 0;
+  background-color: #32476e;
+  padding: 3px;
 }
 
-.map-container {
-  background-color: #337361;
-  height: 300px;
+.map_bm:active {
+  /*margin: 1px;*/
+  border: 2px solid red;
+  border-radius: 10px 10px  0 0;
+  background-color: #46659e;
+  padding: 3px;
 }
 
-.map-toolbar {
-  display: flex;
-  background-color: #334361;
-  height: 30px;
-
+.map_bm:hover {
+  /*margin: 1px;*/
+  border: 2px solid red;
+  border-radius: 10px 10px  0 0;
+  background-color: #46659e;
+  padding: 3px;
 }
