@@ -29,7 +29,9 @@ body {
   background-color: #585454;
 }
 
-.react_wrapper{
+
+
+.topbar_wrapper{
   display: flex;
   justify-content: space-between;
 }
@@ -58,21 +60,11 @@ li {
 }
 
 .map_bm:active {
-  /*margin: 1px;*/
-  border-top: 2px solid #3b578b;
-  border-right: 2px solid #3b578b;
-  border-radius: 10px 10px  0 0;
   background-color: #46659e;
-  padding: 3px;
 }
 
 .map_bm:hover {
-  /*margin: 1px;*/
-  border-top: 2px solid #3b578b;
-  border-right: 2px solid #3b578b;
-  border-radius: 10px 10px  0 0;
   background-color: #46659e;
-  padding: 3px;
 }
 /*
 span {
