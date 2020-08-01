@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Step = props =>
+const Button = (props) =>
   <div className="button_wrapper" id={props.id}>
     <button id={props.buttonID}> {props.value}</button>
     </div>
 
-export default Step
+export default Button
 
 

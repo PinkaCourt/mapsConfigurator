@@ -1,19 +1,27 @@
 import React, {Component} from 'react';
-import Step from './Step.js'
-import Form from './Form.js'
-import {log} from '../func/cameras.js'
-import {getHost} from '../func/cameras.js'
-import {GetOptions} from '../func/httpapi.js'
+import Button from './buttons/Button.jsx'
+import Form from './Form.jsx'
+import {log} from '../../func/cameras.js'
+import {getHost} from '../../func/cameras.js'
+import {GetOptions} from '../../func/httpapi.js'
 // to delete
-import {IP} from '../constants/input.js'
-import {PORT} from '../constants/input.js'
-import {AUTH} from '../constants/input.js'
-import {URL} from '../constants/url.js'
-import {URLhosts} from '../constants/url.js'
+import {IP} from '../../constants/input.js'
+import {PORT} from '../../constants/input.js'
+import {AUTH} from '../../constants/input.js'
+import {URL} from '../../constants/url.js'
+import {URLhosts} from '../../constants/url.js'
 
-class App extends Component {
+export default class App extends Component {
+
+  async handleClick(AUTH) {
+    const res = await fetch(URLhosts, new GetOptions(AUTH))
+    const json = await res.json();
+    console.log(json); 
+    //this.setState({ hosts: json });
+  }
+  
   state = {
-    steps: [
+    buttons: [
       {id:'createMap', buttonID: 'createMapButton', value: 'To create Map'},
       {id:'geolocation', buttonID: 'getGeolocation', value: 'Get Geolocation'},
       {id:'maplist', buttonID: 'maplistButton', value: 'Map List'},
@@ -36,17 +44,17 @@ handle(Click) - это событие реакта.
 в данном случае функция прослушки события - кликнули на кнопку- вызвали функцию
 бля
 */
-
+/*
 async handleClick(AUTH) {
     const res = await fetch(URLhosts, new GetOptions(AUTH))
     const json = await res.json();
     console.log(json); 
-    this.setState({ hosts: json });
+    //this.setState({ hosts: json });
   }
-
+*/
   render() {
     return (
-      <div className="react_wrapper"> 
+      <div className="topbar_wrapper"> 
         <fieldset className="step input" id="input">
         <legend>Данные сервера</legend>
         {this.state.forms.map((e, index) => {
@@ -67,9 +75,9 @@ async handleClick(AUTH) {
         </fieldset>
         <div className="button_list">
 
-          {this.state.steps.map((e, index) => {
+          {this.state.buttons.map((e, index) => {
             return (
-              <Step 
+              <Button 
                 key = {index}
                 id = {e.id}
                 buttonID = {e.buttonID}
@@ -84,5 +92,5 @@ async handleClick(AUTH) {
   }
 }
 
-export default App;
+//export default App;
 

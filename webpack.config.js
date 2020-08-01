@@ -18,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.(jsx?|tsx?)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader"
@@ -27,8 +27,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          require.resolve('style-loader'),
           MiniCssExtractPlugin.loader,
-          'css-loader'
+          {loader: 'css-loader', options: {importLoaders: 1}}
         ]
       },
       {

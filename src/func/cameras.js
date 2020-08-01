@@ -35,23 +35,26 @@ export async function getCameras (AUTH) {
 }
 */
 
+/*
 export async function getMaps (AUTH) {
 	let mapList = await fetch(URLmaplist, new GetOptions(AUTH))
 		.then(res => res.json())
     	.then(data => {
 			data.items.map(selectID)})
 }
-
+*/
 export async function deleteMaps (AUTH, mapsArray) {
 	await fetch(URLchangeMap, new PostOptions(AUTH, new ToDelete(mapsArray)))
 	.then(res => res.json())
 }
 // это работает! не трогай
+/*
 export async function getHost (AUTH) {
 	let host = await fetch(URLhosts, new GetOptions(AUTH))
     .then(res => res.json())
     .then(data => {data[0]})
 }
+*/
 
 export function log(a) {
 	console.log('log' + a)

@@ -1,10 +1,10 @@
 import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './modules/app.js'
-import CameraListContainer from './modules/cameralist/cameralist.js' 
-//import {getCameras} from './modules/cameralist/func.js' 
-import Map from './modules/map/map.js' 
+import App from './components/topbar/app.jsx'
+import CameraListContainer from './components/cameralist/cameralist.jsx' 
+//import {getCameras} from './components/cameralist/func.js' 
+import Map from './components/map/map.jsx' 
 //const
 //import {AUTH} from './constants/input.js'
 
@@ -62,17 +62,6 @@ document.body.appendChild(storeContainer);
 
 
 
-//getCameras(AUTH);
-
-/*
-const getHostButton = document.getElementById('getHost')
-const maplistButton = document.getElementById('maplistButton')
-const removeMapsButton = document.getElementById('removeMapsButton')
-const resultDiv = document.getElementById('resultDiv')
-const getCamerasbutton = document.getElementById('getCamerasbutton')
-const addCamerasOnMap = document.getElementById('addCamerasOnMap')
-const createMapButton = document.getElementById('createMapButton')
-*/
 
 
 //let toDeleteMaps = [];
