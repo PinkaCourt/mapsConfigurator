@@ -1,16 +1,12 @@
 //эта не готова
 import React, {Component} from 'react';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import { Layer, Feature } from 'react-mapbox-gl';
+import MapImg from './Mapimg/Mapimg.jsx'
 import MapBookMarks from './navbar/MapBookMarks.jsx'
 import {GetOptions} from '../../func/httpapi.js'
-//import classes  from './map.module.css'
-//import classes from './map.css'
-//console.log(classes); 
 
 import {AUTH} from '../../constants/input.js'
 import {URLmaplist} from '../../constants/url.js'
-
-
 
 //const
 
@@ -31,13 +27,6 @@ const styles = {
     height: '30px',
 	},
 };
-
-const Mapimg = ReactMapboxGl({
-  accessToken:
-    'pk.eyJ1IjoicGlua2Frb3J0IiwiYSI6ImNrM29ueHE1djF2bjEzZnJrbHU4b2h2aDMifQ.wGdsYfdCfpw7pbpva8-Qmw'
-});
-
-
 
 class Map extends Component {
   state = {
@@ -82,20 +71,17 @@ class Map extends Component {
         className="map_wrapper">
         <div style={styles.map_container} className="map_container">
           ТУТ БУДЕТ КАРТА
-          <Mapimg
-              style="mapbox://styles/mapbox/streets-v9"
-              containerStyle={{
-                height: '100vh',
-                width: '100vw'
-              }}
-            >
-              <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-                <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-              </Layer>
-            </Mapimg>;
-
-
-
+          <MapImg
+            style="mapbox://styles/mapbox/streets-v9"
+            containerStyle={{
+              height: '100%',
+              width: '100%'
+            }}
+          >
+            <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
+              <Feature coordinates={[55.609928131103516, 37.590171813964844]} />
+            </Layer>
+          </MapImg>;
           </div>
         <div style={styles.map_toolbar} 
           className="map_toolbar">
