@@ -33,8 +33,8 @@ export async function getCameras (AUTH) {
 	//makeElement('resultDiv', camerasID);
 	//console.log('camerasID' + camerasID)
 }
-*/
 
+*/
 /*
 export async function getMaps (AUTH) {
 	let mapList = await fetch(URLmaplist, new GetOptions(AUTH))

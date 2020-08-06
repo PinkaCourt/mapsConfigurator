@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {AUTH} from '../../constants/input.js'
 import CameraItem from './CameraItem.jsx'
 import {GetOptions} from '../../func/httpapi.js'
+import {getCameras} from './func.js'
 import {URLcameraList} from '../../constants/url.js'
-
 
 /*
 Описание типов
@@ -66,10 +66,22 @@ const {
 class CameraListContainer extends Component {
   constructor(props) {
 	super(props);
+	/*this.iframe = React.createRef();*/
+  }
+  state = {
+	cameras: [],
+	};
+
+  /* было. работало
+ constructor(props) {
+	super(props);
 	this.state = {data:[]}
 	this.iframe = React.createRef();
 	
-  }
+  } 
+  */
+
+  
 
   /*
   	getFirstBookmark() {
@@ -89,6 +101,46 @@ class CameraListContainer extends Component {
 
   }*/
 
+
+  componentDidMount() {
+	this.fetchAll();
+	}
+
+  	fetchAll = async () => {
+		const {cameras} = this.state;
+
+		if (!cameras.length) {
+			const res = await getCameras(AUTH);
+			//console.log('res ' + JSON.stringify(res));
+			const cameras = res;
+			this.setState({cameras});
+		}
+	}
+/* функция под мапу
+  	fetchAll = async () => {
+		const {camerasMap} = this.state;
+
+		if (!camerasMap.size) {
+			const res = await getCameras(AUTH);
+			//console.log('res ' + JSON.stringify(res));
+			const result = {
+				displayId: res.displayId,
+				displayName: res.displayName,
+			};
+			console.log('result ' + JSON.stringify(result));
+
+			const camMap = result;
+
+			const cameras = Array.from(camMap.values());
+			this.setState({cameras, camerasMap: camMap, loading: false});
+		}
+	}
+*/
+
+
+
+
+
   async handleGetCameras (AUTH) {
     const res  = await fetch(URLcameraList, new GetOptions(AUTH))
     const json = await res.json();
@@ -96,15 +148,6 @@ class CameraListContainer extends Component {
     this.setState({ data: json.cameras });
   }
 
-  /*
-    state = {
-      cameras: [
-        {id:'1', name:'camera1'} ,
-        {id:'2', name:'camera3'},
-        {id:'23', name:'camera37'}
-      ]
-    }
-*/
     /*
     
     state = {
@@ -122,17 +165,17 @@ class CameraListContainer extends Component {
 	};
     
     */
+
+   //cameraListState
+
   render() {
     return (
       <ul className="camera_list">
-        <div className="buttonForCameraList">
-        <button onClick={this.handleGetCameras.bind(this, AUTH)} className="button"> GET Camera list </button>
 
-        </div>
-        {this.state.data.map((e, index) => {
+        {this.state.cameras.map((e) => {
           return (
             <CameraItem 
-              key = {index}
+              key = {e.displayId}
               id = {e.displayId}
               name = {e.displayName}  
               />
@@ -143,5 +186,34 @@ class CameraListContainer extends Component {
 
       );
   }
+
+  /*
+   render() {
+    return (
+      <ul className="camera_list">
+        <div className="buttonForCameraList">
+        <button onClick={this.handleGetCameras.bind(this, AUTH)} className="button"> GET Camera list </button>
+
+        </div>
+
+        {this.state.data.map((e) => {
+          return (
+            <CameraItem 
+              key = {e.displayId}
+              id = {e.displayId}
+              name = {e.displayName}  
+              />
+          )
+        })
+        }
+      </ul>
+
+      );
+  } 
+  */
+
 }
+
+
+
 export default CameraListContainer;
