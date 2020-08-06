@@ -72,36 +72,6 @@ class CameraListContainer extends Component {
 	cameras: [],
 	};
 
-  /* было. работало
- constructor(props) {
-	super(props);
-	this.state = {data:[]}
-	this.iframe = React.createRef();
-	
-  } 
-  */
-
-  
-
-  /*
-  	getFirstBookmark() {
-		const {activeBookmarks} = this.state;
-		const bookmarks = Array.from(activeBookmarks.values());
-
-		return head(bookmarks);
-	}*/
-
-/*
-    props = {
-		"cameras":[],
-	}
-*/
-
-  /*if (props.cameras.length === 0) {
-
-  }*/
-
-
   componentDidMount() {
 	this.fetchAll();
 	}
@@ -147,24 +117,6 @@ class CameraListContainer extends Component {
     console.log(json); 
     this.setState({ data: json.cameras });
   }
-
-    /*
-    
-    state = {
-		filter: '',
-		bookmarks: [],
-		loading: true,
-		activeBookmarks: new Map(),
-		iframeInitialized: false,
-		iframeLoaded: false,
-		videoMode: false,
-		openModal: false,
-		showConfirm: false,
-		pendingAction: noop,
-		bookmarksMap: new Map(),
-	};
-    
-    */
 
    //cameraListState
 
