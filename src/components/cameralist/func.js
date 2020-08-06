@@ -1,10 +1,6 @@
 // функции вызова списка камер
 import {GetOptions} from '../../func/httpapi.js'
 import {URLcameraList} from '../../constants/url.js'
-import {selectCameraID} from '../../func/select.js'
-
-// запрос списка камер
-// function return array id + cameraName
 
 export async function getCameras (AUTH) {
 	let cameras;
@@ -15,8 +11,6 @@ export async function getCameras (AUTH) {
 
 	return cameras;
 }
-
-
 
 //функция под мапу
 
