@@ -34,7 +34,7 @@ ReactDOM.render(
   <React.StrictMode>
     <CameraListContainer/>
   </React.StrictMode>,
-  document.getElementById('camera_list')
+  document.getElementById('sidebar')
 );
 
 //Map
