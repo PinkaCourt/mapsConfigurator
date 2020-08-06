@@ -93,7 +93,6 @@ class Map extends Component {
           </div>
         <div style={styles.map_toolbar} 
           className="map_toolbar">
-
           {this.state.maps.map((e) => {
             return (
               <MapBookMarks 
@@ -108,7 +107,6 @@ class Map extends Component {
             )
           })}
           </div>
-
       </div>
       );
 
