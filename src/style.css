@@ -18,18 +18,22 @@ body {
 
 }
 
-#camera_list {
-  width: 255px;
-  /*flex: 0 0 250px;*/
+#sidebar {
+  width: 250px;
   background-color: #334361;
+  display: flex;
+  flex-direction: column;
+}
+
+.camera_item {
+  margin: 1px auto;
+  cursor: default;
 }
 
 #view_map {
-  flex: 1 1 auto;
+  flex: 1 2 auto;
   background-color: #585454;
 }
-
-
 
 .topbar_wrapper{
   display: flex;
@@ -50,13 +54,12 @@ li {
   }
 
 .map_bm {
-  /*margin: 1px;*/
   border-top: 2px solid #3b578b;
   border-right: 2px solid #3b578b;
   border-radius: 10px 10px  0 0;
   background-color: #32476e;
   padding: 3px;
-  /*text-align: center;*/
+  cursor: default;
 }
 
 .map_bm:active {
@@ -66,12 +69,3 @@ li {
 .map_bm:hover {
   background-color: #46659e;
 }
-/*
-span {
-  
-    display:block;
-    width:100%;
-    height: 100%;
-    margin: 0 auto;
- 
-}*/

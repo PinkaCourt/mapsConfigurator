@@ -1,3 +1,4 @@
+/*
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -8,12 +9,13 @@
 
 .container {
   background-color: #337361;
-  height: 300px;
+  height: 90%;
 }
 
 .toolbar {
   display: flex;
   background-color: #334361;
-  height: 30px;
+  height: 10%;
 }
 
+*/
