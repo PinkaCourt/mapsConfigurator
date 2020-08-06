@@ -1,17 +1,14 @@
 import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/topbar/app.jsx'
+import ToolBar from './components/topbar/ToolBar.jsx'
 import CameraListContainer from './components/cameralist/cameralist.jsx' 
-//import {getCameras} from './components/cameralist/func.js' 
 import Map from './components/map/map.jsx' 
-//const
-//import {AUTH} from './constants/input.js'
+
 
 import makeElement from './func/makeElement.js'
 import {GetOptions} from "./func/httpapi.js"
 import {PostOptions} from "./func/httpapi.js"
-//import {ToCreate} from "./func/bodys.js"
 import {randomDelta} from "./func/random.js"
 import {mathSymbolRandom} from "./func/random.js"
 import {Data} from "./func/data.js"
@@ -24,25 +21,21 @@ import {URLmaplist} from './constants/url.js'
 import {URLchangeMap} from './constants/url.js'
 import {URLhosts} from './constants/url.js'
 
-
-
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ToolBar/>
   </React.StrictMode>,
   document.getElementById('topbar')
 );
-
 
 //CameraList
 
 ReactDOM.render(
   <React.StrictMode>
-    <CameraListContainer />
+    <CameraListContainer/>
   </React.StrictMode>,
   document.getElementById('camera_list')
 );
-
 
 //Map
 ReactDOM.render(
@@ -60,10 +53,6 @@ document.body.appendChild(storeContainer);
 
 */
 
-
-
-
-
 //let toDeleteMaps = [];
 /*
 function selectID(e) {
@@ -72,11 +61,7 @@ function selectID(e) {
 }
 */
 
-/*
-function log(a) {
-  console.log('log' + a)
-}
-*/
+
 //listener(getHostButton, log())
 
 //getHostButton.addEventListener("click", getHost(URLhosts, new GetOptions(AUTH)));
