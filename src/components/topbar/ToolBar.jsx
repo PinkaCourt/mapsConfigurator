@@ -11,15 +11,13 @@ import {AUTH} from '../../constants/input.js'
 import {URL} from '../../constants/url.js'
 import {URLhosts} from '../../constants/url.js'
 
-
-
 export default class ToolBar extends Component {
 
   async handleClick(AUTH) {
     const res = await fetch(URLhosts, new GetOptions(AUTH))
     const json = await res.json();
     console.log(json); 
-    //this.setState({ hosts: json });
+
   }
   
   state = {
@@ -38,24 +36,9 @@ export default class ToolBar extends Component {
     ],
     hosts:[]
   }
-//ref={newHost}
 
-  //делаем ссылку на новый элемент
   newHost = React.createRef();
-/*
-пнем хосты ручками
-handle(Click) - это событие реакта. 
-в данном случае функция прослушки события - кликнули на кнопку- вызвали функцию
-бля
-*/
-/*
-async handleClick(AUTH) {
-    const res = await fetch(URLhosts, new GetOptions(AUTH))
-    const json = await res.json();
-    console.log(json); 
-    //this.setState({ hosts: json });
-  }
-*/
+
   render() {
     return (
       <div className="topbar_wrapper"> 
