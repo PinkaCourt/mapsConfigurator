@@ -30,8 +30,13 @@ body {
   cursor: default;
 }
 
+.camera_item:active {
+  background-color: #2e3f5f;
+}
+
+
 #view_map {
-  flex: 1 2 auto;
+  flex: 1 1 auto;
   background-color: #585454;
 }
 
