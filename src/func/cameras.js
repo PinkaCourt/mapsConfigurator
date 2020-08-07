@@ -26,10 +26,6 @@ export async function getHost (AUTH) {
 }
 */
 
-export function log(a) {
-	console.log('log' + a)
-  }
-
 export async function createMap (AUTH) {
   let mapID = await fetch(URLchangeMap, new PostOptions(AUTH, new ToCreate))
     .then(res =>
