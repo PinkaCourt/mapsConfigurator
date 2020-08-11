@@ -1,79 +1,107 @@
 import React, {Component} from 'react';
-import ReactMapGL, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoicGlua2Frb3J0IiwiYSI6ImNrM29ueHE1djF2bjEzZnJrbHU4b2h2aDMifQ.wGdsYfdCfpw7pbpva8-Qmw';
 
+const Map = ReactMapboxGl({
+  accessToken: MAPBOX_TOKEN,
+  });
 
-/*{ accessToken, 
-  apiUrl, 
-  minZoom, 
-  maxZoom, 
-  hash, 
-  preserveDrawingBuffer, 
-  scrollZoom, 
-  interactive, 
-  dragRotate, 
-  pitchWithRotate, 
-  attributionControl, 
-  customAttribution, 
-  logoPosition, 
-  renderWorldCopies, 
-  trackResize, 
-  touchZoomRotate, 
-  doubleClickZoom, 
-  keyboard, 
-  dragPan, 
-  boxZoom, 
-  refreshExpiredTiles, 
-  failIfMajorPerformanceCaveat,
-  bearingSnap, 
-  injectCSS, 
-  antialias, 
-  transformRequest }
-*/
-/*
+const ICON = 'https://image.flaticon.com/icons/svg/2196/2196761.svg';
+
 class MapImg extends Component {
-    state = {
-      viewport: {
+    constructor(props) {
+    super(props);
+    }
+
+  state = {
         width: 400,
         height: 400,
-        latitude: 37.7577,
-        longitude: 42.4376,
-        zoom: 8
-      }
+        latitude: 37.61556, //Долгота y
+        longitude: 55.75222, //Широта x
+        zoom: [10],
+        renderChildrenInPortal: true,
     };
-  
+/*
+  componentDidMount() {
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [this.state.longitude, this.state.latitude],
+      zoom: this.state.zoom
+      });
+	  }
+  */
+
+    /*
+     componentDidMount() {
+      this.fetchAll();
+      }
+
+  	fetchAll = async () => {
+		const {cameras} = this.state;
+
+		if (!cameras.length) {
+			const res = await getCameras(AUTH);
+			//console.log('res ' + JSON.stringify(res));
+			const cameras = res;
+			this.setState({cameras});
+		}
+	}
+    */
+
+
+
+
     render() {
       return (
-        <ReactMapGL
-            style="mapbox://styles/mapbox/streets-v9"
+        <Map
+            style="mapbox://styles/mapbox/streets-v11" 
+            center={[this.state.latitude,  55.75222]}
+            zoom={this.state.zoom}
             containerStyle={{
                 height: '100%',
                 width: '100%'
                 }}
             mapboxApiAccessToken={MAPBOX_TOKEN}
       >
+        
         <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[`$viewport.latitude`, `$viewport.longitude`]} />
-        </Layer>
-      </ReactMapGL>
-        
-        
-      );
-    }
-  }
-*/
+          <Marker
+            coordinates={[37.62860, 55.64325]}
+            anchor="bottom"        
+            style={{
+              width:'16px',
+              height:'16px',
+          }}
+            >
+              <img src={ICON}/>
+          </Marker>
 
+
+        </Layer>
+      </Map>
+        )
+      }
+  }
 
 /*
-"position": {
-                    "x": 37.590171813964844,
-                    "y": 55.609928131103516
-                }
-*/
-const MapImg = ReactMapGL({
-  accessToken: MAPBOX_TOKEN
-});
 
+https://github.com/alex3165/react-mapbox-gl/blob/master/docs/API.md
+*/
 
 export default MapImg;
+
+/*
+        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
+          <Feature coordinates={[37.61560, 55.75225]} />
+          <Marker
+            coordinates={[37.61860, 55.74325]}
+            anchor="bottom">
+            <img src={ICON}/>
+          </Marker>
+
+
+        </Layer>
+
+*/
