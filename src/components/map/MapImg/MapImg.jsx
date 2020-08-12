@@ -30,18 +30,12 @@ class MapImg extends Component {
     userLocation: {}
   };
 
-
-
 /*
-
   componentDidMount() {
     this.setUserLocation();
     }
 
-
-*/
-/*
-  componentDidMount() {
+    componentDidMount() {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -49,7 +43,6 @@ class MapImg extends Component {
       zoom: this.state.zoom
       });
 	  }
-  */
 
     /*
      componentDidMount() {
@@ -67,10 +60,6 @@ class MapImg extends Component {
 		}
 	}
     */
-
-
-
-
     render() {
       return (
         <Map
@@ -83,10 +72,15 @@ class MapImg extends Component {
                 }}
             mapboxApiAccessToken={MAPBOX_TOKEN}
       >
-        
-        <Layer type="symbol" id="markerLayer" layout={{ 'icon-image': 'attraction-11' }}>
+        <Layer 
+          type="symbol"
+          id="markerLayer"
+          layout={
+            {'icon-image': 'attraction-11'}
+            }>
+
           {this.state.viewport.markers.map((e, index) => {
-            console.log('e: ' + e);
+            //console.log('e: ' + e);
             return (
               <CameraMarker 
                 coordinates = {e} 
