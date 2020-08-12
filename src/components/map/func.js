@@ -12,3 +12,23 @@ export async function getMaps(AUTH) {
     return maps;
   }
 
+  export function setUserLocation() {
+    navigator.geolocation.getCurrentPosition(position => {
+       let setUserLocation = {
+           lat: position.coords.latitude,
+           long: position.coords.longitude
+        };
+       let newViewport = {
+          height: "400",
+          width: "400",
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          zoom: [8],
+          renderChildrenInPortal: true,
+        };
+        this.setState({
+          viewport: newViewport,
+          userLocation: setUserLocation
+       });
+    });
+  };
