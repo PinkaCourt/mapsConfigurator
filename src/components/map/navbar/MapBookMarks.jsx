@@ -9,16 +9,6 @@ const MapBookMarks = (props) =>
 export default MapBookMarks
 */
 const styles = {
-	map_wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '100%',
-  },
-	map_container: {
-    backgroundColor: '#337361',
-    height: '100%',
-  },
 	map_toolbar: {
 		display: 'flex',
     backgroundColor: '#334361',
@@ -39,18 +29,18 @@ class MapBookMarks extends Component {
 componentDidMount() {
   this.fetchAll();
   }
-
+//получаем список всех карт
 fetchAll = async () => {
   const {maps} = this.state;
 
   if (!maps.length) {
-    const res = await getMaps(AUTH);
-    const maps = res;
+    const maps = await getMaps(AUTH);
     this.setState({maps});
   }
 }
-
+//if (this.state.maps.length)
   render() {
+    if (this.state.maps.length) {
     return (
        <div style={styles.map_toolbar} 
          className="map_toolbar">
@@ -65,8 +55,11 @@ fetchAll = async () => {
             </li>)
          })}
          </div>
-     );
- }
+        )
+      };
+    return null;
+    };
+
 }
 
 export default MapBookMarks;
