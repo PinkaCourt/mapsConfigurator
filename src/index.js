@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ToolBar from './components/topbar/ToolBar.jsx'
 import CameraListContainer from './components/cameralist/cameralist.jsx' 
-import Map from './components/map/map.jsx' 
+import Map from './components/map/Map.jsx' 
 
 
 import makeElement from './func/makeElement.js'

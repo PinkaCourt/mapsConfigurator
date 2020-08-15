@@ -10,13 +10,21 @@ const Map = ReactMapboxGl({
   });
 
 //const ICON = 'https://image.flaticon.com/icons/svg/2196/2196761.svg';
+const STYLEMAP ="mapbox://styles/mapbox/streets-v8";
 
 class MapImg extends Component {
     constructor(props) {
     super(props);
     }
 
-  state = {
+  /*state = {
+    viewport: {},
+    userLocation: {}
+  };*/
+
+  /*
+  
+    state = {
     viewport: {
         width: 400,
         height: 400,
@@ -29,6 +37,10 @@ class MapImg extends Component {
     },
     userLocation: {}
   };
+
+  
+  
+  */
 
 /*
   componentDidMount() {
@@ -61,39 +73,107 @@ class MapImg extends Component {
 	}
     */
     render() {
-      return (
-        <Map
-            style="mapbox://styles/mapbox/streets-v8" 
-            center={[this.state.viewport.latitude,  55.75222]}
-            zoom={this.state.viewport.zoom}
-            containerStyle={{
-                height: '100%',
-                width: '100%'
-                }}
-            mapboxApiAccessToken={MAPBOX_TOKEN}
-      >
-        <Layer 
-          type="symbol"
-          id="markerLayer"
-          layout={
-            {'icon-image': 'attraction-11'}
-            }>
+      //console.log('props to mapImg' ,  this.props);
+      if (this.props.id) {
+        //console.log('if (this.props.id)' ,  this.props);
+        return (
+          <div className="map_container">
+          <Map
+              style={STYLEMAP} 
+              center={[this.props.latitude,  this.props.longtitude]}
+              zoom={this.props.zoom}
+              containerStyle={{
+                  height: '100%',
+                  width: '100%'
+                  }}
+              mapboxApiAccessToken={MAPBOX_TOKEN}
+        >
+          <Layer 
+            type="symbol"
+            id="markerLayer"
+            layout={
+              {'icon-image': 'attraction-11'}
+              }>
 
-          {this.state.viewport.markers.map((e, index) => {
-            //console.log('e: ' + e);
-            return (
-              <CameraMarker 
-                coordinates = {e} 
-                key = {index}
-                />
-            )
-          })
-        }
-        </Layer>
-      </Map>
-        )
+            {this.props.markers.map((e, index) => {
+              //console.log('e: ' + e);
+              return (
+                <CameraMarker 
+                  coordinates = {e} 
+                  key = {index}
+                  />
+              )
+            })
+          }
+          </Layer>
+        </Map>
+        </div>
+          ) 
+        } else {
+          return <div> </div>
+          } 
       }
   }
+
+
+/*
+render() {
+      if (Object.keys(this.state.viewport).length != 0) {
+        console.log(this.state.viewport);
+        return (
+          <div className="map_container">
+          <Map
+              style={STYLEMAP} 
+              center={[this.state.viewport.latitude,  this.state.viewport.longtitude]}
+              zoom={this.state.viewport.zoom}
+              containerStyle={{
+                  height: '100%',
+                  width: '100%'
+                  }}
+              mapboxApiAccessToken={MAPBOX_TOKEN}
+        >
+          <Layer 
+            type="symbol"
+            id="markerLayer"
+            layout={
+              {'icon-image': 'attraction-11'}
+              }>
+
+            {this.state.viewport.markers.map((e, index) => {
+              //console.log('e: ' + e);
+              return (
+                <CameraMarker 
+                  coordinates = {e} 
+                  key = {index}
+                  />
+              )
+            })
+          }
+          </Layer>
+        </Map>
+        </div>
+          ) 
+        } else {
+          return <div> </div>
+          } 
+      }
+  }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 

@@ -10,7 +10,7 @@ const CameraMarker = (props) =>
         coordinates={this.props.coordinates}
         anchor="bottom"
         >
-        <img src=" https://img.icons8.com/color/48/000000/marker.png" />
+        <img src={markerUrl}/>
         </Marker>
 
 export default CameraMarker;
