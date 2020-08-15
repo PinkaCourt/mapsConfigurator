@@ -3,12 +3,22 @@ import {GetOptions} from '../../func/httpapi.js'
 
 
 export async function getMaps(AUTH) {
-    let maps;
-
-    await fetch(URLmaplist, new GetOptions(AUTH))
-    .then(res => res.json())
-    .then(data => {maps = data.items})
-    
+  let maps = [];
+  let dataMaps;
+  await fetch(URLmaplist, new GetOptions(AUTH))
+   .then(res => res.json())
+   .then(data => {dataMaps = data.items}
+      )
+  dataMaps.map(item => {
+    const map = {
+      'name': item.data.name,
+      'id': item.meta.id,
+      'position': item.data.position,
+      'zoom': item.data.zoom,
+      };
+    maps.push(map);
+    })
+  
     return maps;
   }
 
@@ -32,3 +42,11 @@ export async function getMaps(AUTH) {
        });
     });
   };
+
+
+
+
+
+
+
+
