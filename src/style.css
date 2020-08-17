@@ -7,10 +7,17 @@ body {
 }
 
 #topbar {
-  min-height: 150px;
+  min-height: 50px;
   background-color: #1a3566;
+  display: flex;
+  justify-content: space-between;
 }
-
+/*
+.topbar_wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+*/
 #main {
   background-color: #e71717;
   display: flex;
@@ -41,11 +48,6 @@ body {
 #view_map {
   flex: 1 1 auto;
   background-color: #585454;
-}
-
-.topbar_wrapper{
-  display: flex;
-  justify-content: space-between;
 }
 
 .input {
@@ -89,15 +91,31 @@ li {
   border-top: 2px solid #3b578b;
   border-right: 2px solid #3b578b;
   border-radius: 10px 10px  0 0;
+  
   background-color: #32476e;
+  /*background: rgb(75,110,176);
+  background: linear-gradient(77deg, rgba(75,110,176,1) 0%, rgba(63,96,158,1) 10%, rgba(59,87,139,1) 50%, rgba(75,110,176,1) 90%);
+  */
   padding: 3px;
   cursor: default;
 }
 
-
+/*
 .map_bm:active {
-  background-color: #1358d8;
+  background-color: #45da00;
 }
+*/
+
+.map_bm--active {
+  background-color: #46659e;
+  border-top: 2px solid #3b578b;
+  border-right: 2px solid #3b578b;
+  /*box-shadow: 2px -2px 0px 7px rgba(59,87,139,1);*/
+  border-radius: 10px 10px  0 0;
+  padding: 3px;
+  cursor: default;
+}
+
 
 .map_bm:hover {
   background-color: #46659e;

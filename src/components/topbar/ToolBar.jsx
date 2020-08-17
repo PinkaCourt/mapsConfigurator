@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Button from './buttons/Button.jsx'
-import Form from './Form.jsx'
 import {log} from '../../func/cameras.js'
 import {getHost} from '../../func/cameras.js'
 import {GetOptions} from '../../func/httpapi.js'
@@ -28,12 +27,6 @@ export default class ToolBar extends Component {
       {id:'AddingCameras', buttonID: 'addCamerasOnMap', value: 'Adding markers on map'},
       {id:'resultDiv', buttonID: 'barrelButton', value: 'do a barrel roll'}
     ],
-    forms: [
-      {id: 'IP', value: '192.168.1.36'},
-      {id:'PORT', value: '8001'},
-      {id:'USER', value: 'root'},
-      {id:'PASS', value: 'root'}
-    ],
     hosts:[]
   }
 
@@ -41,8 +34,6 @@ export default class ToolBar extends Component {
 
   render() {
     return (
-      <div className="topbar_wrapper"> 
-        <Form />
         <div className="button_list">
           {this.state.buttons.map((e, index) => {
             return (
@@ -54,7 +45,6 @@ export default class ToolBar extends Component {
                 />
             )
           })}
-          </div>
       </div>
       );
   }
