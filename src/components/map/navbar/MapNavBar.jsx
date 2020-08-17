@@ -38,6 +38,7 @@ selectElem(index) {
                   zoom = {e.zoom}
                   id = {e.id}
                   onMapClick={this.props.onMapClick}
+                  activeMap={this.props.activeMap}
                   //onSelect={this.selectElem.bind(this, index)}
                   />
               )

@@ -1,6 +1,10 @@
 import {URLmaplist} from '../../constants/url.js'
-import {GetOptions} from '../../func/httpapi.js'
+import {URLMapMarkers} from '../../constants/url.js'
 
+import {GetOptions} from '../../func/httpapi.js'
+import {PostOptions} from '../../func/httpapi.js'
+
+import {MapMarkers} from '../../func/bodys.js'
 
 export async function getMaps(AUTH) {
   let maps = [];
@@ -21,7 +25,7 @@ export async function getMaps(AUTH) {
   
     return maps;
   }
-
+//хз. работает или нет
   export function setUserLocation() {
     navigator.geolocation.getCurrentPosition(position => {
        let setUserLocation = {
@@ -43,10 +47,25 @@ export async function getMaps(AUTH) {
     });
   };
 
-
-
-
-
+  export async function getMapsMarkers(AUTH, mapID) {
+    let markers = [];
+    let dataMarkers;
+    
+    await fetch(URLMapMarkers, new PostOptions(AUTH, new MapMarkers(mapID)))
+     .then(res => res.json())
+     .then(data => {
+       dataMarkers = Object.values(data.markers)
+      })
+    dataMarkers.map(e => {
+    const marker = {
+      'component_name': e.component_name,
+      /*'cameraId': endpoint,*/
+      'position': e.position,
+      };
+      markers.push(marker);
+    })
+    return markers;
+  }
 
 
 

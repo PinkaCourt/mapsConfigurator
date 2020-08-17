@@ -5,6 +5,7 @@ import MapImg from './Mapimg/Mapimg.jsx'
 import MapNavBar from './navbar/MapNavBar.jsx'
 import {GetOptions} from '../../func/httpapi.js'
 import {getMaps} from './func.js'
+import {getMapsMarkers} from './func.js'
 import {AUTH} from '../../constants/input.js'
 import {URLmaplist} from '../../constants/url.js'
 
@@ -20,54 +21,39 @@ class Map extends Component {
               {'x': null,
               'y': null},
         'zoom': null,
+        'name': '',
+        'markers':[],
         },
       }
   }
 
-
-
-  /*
-  constructor(props) {
-    super(props);
-    this.state = {
-      maps: [],
-      activeMap: {
-        'id': '',
-        'position': 'x': null,
-                    'y': null,
-        'zoom': null,
-        },
-      }
-  }
-  
-  
-  */
   componentDidMount() {
     this.fetchAll();
     }
 
   fetchAll = async () => {
     const {maps} = this.state;
-    //console.log('length' + this.state.maps.length)
 
     if (!maps.length) {
-      const res = await getMaps(AUTH);
-      const maps = res;
+      const maps = await getMaps(AUTH);
       this.setState({maps});
-      //console.log('this.state' + JSON.stringify(this.state))
     }
+
   }
 
-  onSelectMapBookmarkHandler = (id, position, zoom) => {
-    //console.log('1state: ', JSON.stringify(this.state.activeMap));
+  onSelectMapBookmarkHandler = async (id, position, zoom, name) => {
+    const markers  = await getMapsMarkers(AUTH, id);
     let activeMap = {
       'id': id,
       'position': position,
       'zoom': [zoom],
-    }
-    //console.log('activeMap: ', activeMap.id);
+      'name': name,
+      'markers': markers,
+    };
     this.setState({activeMap});
-    console.log('state: ', JSON.stringify(this.state.activeMap));
+    console.log('this.state.activeMap.id', this.state.activeMap.id);
+    console.log('this.state.activeMap.name', this.state.activeMap.name);
+    console.log('this.state.activeMap.markers', this.state.activeMap.markers);
   }
 
 //map_toolbar не должен рисоваться если карт нет (+)
