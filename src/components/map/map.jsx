@@ -51,9 +51,9 @@ class Map extends Component {
       'markers': markers,
     };
     this.setState({activeMap});
-    console.log('this.state.activeMap.id', this.state.activeMap.id);
-    console.log('this.state.activeMap.name', this.state.activeMap.name);
-    console.log('this.state.activeMap.markers', this.state.activeMap.markers);
+    //console.log('this.state.activeMap.id', this.state.activeMap.id);
+    //console.log('this.state.activeMap.name', this.state.activeMap.name);
+    //console.log('this.state.activeMap.markers', this.state.activeMap.markers);
   }
 
 //map_toolbar не должен рисоваться если карт нет (+)
@@ -65,7 +65,7 @@ class Map extends Component {
           latitude={this.state.activeMap.position.x}
           longtitude={this.state.activeMap.position.y}
           zoom={this.state.activeMap.zoom}
-          markers={[]}
+          markers={this.state.activeMap.markers}
       /> 
         {this.state.maps.length ? (<MapNavBar 
                                       maps={this.state.maps} 
