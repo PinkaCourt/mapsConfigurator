@@ -37,4 +37,8 @@ export class ToCreate {
   }
   
 
-  
+  export class MapMarkers {
+    constructor(mapID) {
+      this.map_id = mapID;
+    }
+  }
