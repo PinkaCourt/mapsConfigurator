@@ -8,6 +8,7 @@ import {getMaps} from './func.js'
 import {getMapsMarkers} from './func.js'
 import {AUTH} from '../../constants/input.js'
 import {URLmaplist} from '../../constants/url.js'
+import ToolBar from './topbar/ToolBar.jsx'
 
 //это высший класс со стэйтом
 class Map extends Component {
@@ -56,10 +57,16 @@ class Map extends Component {
     //console.log('this.state.activeMap.markers', this.state.activeMap.markers);
   }
 
+  CreateNewMapHandler = () => {
+    console.log('CreateNewMapHandler')
+  }
+
+
 //map_toolbar не должен рисоваться если карт нет (+)
   render() {
      return (
       <div className="map_wrapper">
+        <ToolBar />
         <MapImg
           id={this.state.activeMap.id}
           latitude={this.state.activeMap.position.x}

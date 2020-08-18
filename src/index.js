@@ -1,7 +1,7 @@
 import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ToolBar from './components/topbar/ToolBar.jsx'
+import ToolBar from './components/map/topbar/ToolBar.jsx'
 import CameraListContainer from './components/cameralist/cameralist.jsx' 
 import Map from './components/map/Map.jsx' 
 
@@ -20,14 +20,14 @@ import {URL} from './constants/url.js'
 import {URLmaplist} from './constants/url.js'
 import {URLchangeMap} from './constants/url.js'
 import {URLhosts} from './constants/url.js'
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <ToolBar/>
   </React.StrictMode>,
   document.getElementById('topbar')
 );
-
+*/
 //CameraList
 
 ReactDOM.render(
