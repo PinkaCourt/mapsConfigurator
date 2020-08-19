@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const CreateNewMapButton = (props) =>
-  <button> {'To create Map'} </button>
+export class CreateNewMapButton extends Component {
+  constructor(props) {
+    super(props);
+    }
+
+  render() {
+    //console.log ('this.props_CreateNewMapButton' , this.props)
+    return (
+      <button
+        onClick={() => this.props.onCreateNewMapClick()}
+          > {'To create Map'} 
+            </button>)
+  }
+}
 
 export default CreateNewMapButton
 

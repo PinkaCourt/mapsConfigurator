@@ -26,6 +26,7 @@ export async function getMaps(AUTH) {
     return maps;
   }
 //хз. работает или нет
+/*
   export function setUserLocation() {
     navigator.geolocation.getCurrentPosition(position => {
        let setUserLocation = {
@@ -46,7 +47,7 @@ export async function getMaps(AUTH) {
        });
     });
   };
-
+*/
   export async function getMapsMarkers(AUTH, mapID) {
     let markers = [];
     let dataMarkers;

@@ -10,7 +10,6 @@ const Map = ReactMapboxGl({
   accessToken: MAPBOX_TOKEN,
   });
 
-
 const STYLEMAP ="mapbox://styles/mapbox/streets-v8";
 const markerUrl = 'https://image.flaticon.com/icons/svg/2196/2196761.svg';
 class MapImg extends Component {
@@ -38,51 +37,23 @@ class MapImg extends Component {
     },
     userLocation: {}
   };
-
-  
   
   */
 
-/*
-  componentDidMount() {
-    this.setUserLocation();
-    }
-
-    componentDidMount() {
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.state.longitude, this.state.latitude],
-      zoom: this.state.zoom
-      });
-	  }
-
-    /*
-     componentDidMount() {
-      this.fetchAll();
-      }
-
-  	fetchAll = async () => {
-		const {cameras} = this.state;
-
-		if (!cameras.length) {
-			const res = await getCameras(AUTH);
-			//console.log('res ' + JSON.stringify(res));
-			const cameras = res;
-			this.setState({cameras});
-		}
-	}
-    */
     render() {
-      //console.log('props to mapImg' ,  this.props);
-      if (this.props.id) {
-        //console.log('if (this.props.id)' ,  this.props);
+      console.log('props Map: ' , this.props)
+      if (!this.props.activeMap.id) {
+        return <div></div>
+      } else {
+        let mapProps;
+        this.props.newMap.display ? mapProps = this.props.newMap : mapProps = this.props.activeMap;   
+
         return (
           <div className="map_container">
           <Map
               style={STYLEMAP} 
-              center={[this.props.latitude,  this.props.longtitude]}
-              zoom={this.props.zoom}
+              center={[mapProps.position.x,  mapProps.position.y]}
+              zoom={mapProps.zoom}
               containerStyle={{
                   height: '100%',
                   width: '100%'
@@ -96,7 +67,7 @@ class MapImg extends Component {
               {'icon-image': 'attraction-11'}
               }>
 
-            {this.props.markers.map((e, index) => {
+            {mapProps.markers.map((e, index) => {
               return (
                 <Marker
                   key = {e.component_name}
@@ -109,125 +80,13 @@ class MapImg extends Component {
           }
           </Layer>
         </Map>
-        </div>
-          ) 
-        } else {
-          return <div> </div>
-          } 
+            </div>
+          )
       }
+       
+    } 
+      
   }
-
-
-
-/*
-
-              return (
-                <CameraMarker 
-                  key = {e.component_name}
-                  coordinates = {e.position}
-                  />
-              )
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-render() {
-      if (Object.keys(this.state.viewport).length != 0) {
-        console.log(this.state.viewport);
-        return (
-          <div className="map_container">
-          <Map
-              style={STYLEMAP} 
-              center={[this.state.viewport.latitude,  this.state.viewport.longtitude]}
-              zoom={this.state.viewport.zoom}
-              containerStyle={{
-                  height: '100%',
-                  width: '100%'
-                  }}
-              mapboxApiAccessToken={MAPBOX_TOKEN}
-        >
-          <Layer 
-            type="symbol"
-            id="markerLayer"
-            layout={
-              {'icon-image': 'attraction-11'}
-              }>
-
-            {this.state.viewport.markers.map((e, index) => {
-              //console.log('e: ' + e);
-              return (
-                <CameraMarker 
-                  coordinates = {e} 
-                  key = {index}
-                  />
-              )
-            })
-          }
-          </Layer>
-        </Map>
-        </div>
-          ) 
-        } else {
-          return <div> </div>
-          } 
-      }
-  }
-*/
-
-/*
-
-https://github.com/alex3165/react-mapbox-gl/blob/master/docs/API.md
-*/
 
 export default MapImg;
 
-/*
-        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[37.61560, 55.75225]} />
-          <Marker
-            coordinates={[37.61860, 55.74325]}
-            anchor="bottom">
-            <img src={ICON}/>
-          </Marker>
-
-
-        </Layer>
-
-*/
-
-
-
-/*
-  <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Marker
-            coordinates={[37.62860, 55.64325]}
-            anchor="bottom"        
-            style={{
-              width:'16px',
-              height:'16px',
-          }}
-            >
-              <img src={ICON}/>
-          </Marker>
-
-
-        </Layer>
-
-*/

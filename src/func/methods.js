@@ -1,1 +1,1 @@
-export const updateMarkers = 'axxonsoft.bl.maps.MapService.UpdateMarkers'
+//export const updateMarkers = 'axxonsoft.bl.maps.MapService.UpdateMarkers'

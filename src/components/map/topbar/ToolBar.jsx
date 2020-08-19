@@ -12,14 +12,17 @@ import {URL} from '../../../constants/url.js'
 import {URLhosts} from '../../../constants/url.js'
 
 export default class ToolBar extends Component {
-
+  constructor(props) {
+    super(props);
+    }
+/*
   async handleClick(AUTH) {
     const res = await fetch(URLhosts, new GetOptions(AUTH))
     const json = await res.json();
     console.log(json); 
 
   }
-  
+  */
   state = {
     buttons: [
       //{value: 'To create Map'},
@@ -36,7 +39,9 @@ export default class ToolBar extends Component {
   render() {
     return (
         <div className="map--topbar">
-          <CreateNewMapButton />
+          <CreateNewMapButton 
+            onCreateNewMapClick={this.props.onCreateNewMapClick}
+            />
           {this.state.buttons.map((e, index) => {
             return (
               <Button 

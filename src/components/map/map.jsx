@@ -18,18 +18,31 @@ class Map extends Component {
       maps: [],
       activeMap: {
         'id': '',
-        'position': 
-              {'x': null,
-              'y': null},
+        'position': {
+              'x': null,
+              'y': null
+            },
         'zoom': null,
         'name': '',
         'markers':[],
         },
+      newMap: {
+        'display': false,
+        'id': '',
+        'position': {
+          'x': null,
+          'y': null
+        },
+        'zoom': null,
+        'name': '',
+        'markers':[],
+        }
       }
   }
 
   componentDidMount() {
     this.fetchAll();
+    //this.setUserLocation();
     }
 
   fetchAll = async () => {
@@ -41,7 +54,7 @@ class Map extends Component {
     }
 
   }
-
+  
   onSelectMapBookmarkHandler = async (id, position, zoom, name) => {
     const markers  = await getMapsMarkers(AUTH, id);
     let activeMap = {
@@ -52,27 +65,72 @@ class Map extends Component {
       'markers': markers,
     };
     this.setState({activeMap});
-    //console.log('this.state.activeMap.id', this.state.activeMap.id);
-    //console.log('this.state.activeMap.name', this.state.activeMap.name);
-    //console.log('this.state.activeMap.markers', this.state.activeMap.markers);
   }
 
   CreateNewMapHandler = () => {
-    console.log('CreateNewMapHandler')
-  }
+      console.log('navigator.geolocation');
+      navigator.geolocation.getCurrentPosition(position => {
+         /*let setUserLocation = {
+             lat: position.coords.latitude,
+             long: position.coords.longitude
+          };*/
+          console.log('position.coords.longitude' , position.coords.longitude)
+         let newMap = {
+          'display': true,
+          'id': '1',
+          'position': {
+            'x': position.coords.longitude,
+            'y': position.coords.latitude
+          },
+          'zoom': 8,
+          'name': 'new map',
+          'markers':[],
+          };
+          let activeMap = {
+            'id': '',
+            'position': 
+                  {'x': null,
+                  'y': null},
+            'zoom': null,
+            'name': '',
+            'markers':[],
+            }
 
+          this.setState({
+            newMap, activeMap
+         });
+      });
+
+/*
+    this.setState({
+      //display: !this.state.newMap.display,
+      newMap:{display: true},
+      activeMap: {
+        'id': '',
+        'position': 
+              {'x': null,
+              'y': null},
+        'zoom': null,
+        'name': '',
+        'markers':[],
+        },
+    })
+*/
+
+
+
+  }
 
 //map_toolbar не должен рисоваться если карт нет (+)
   render() {
      return (
       <div className="map_wrapper">
-        <ToolBar />
+        <ToolBar 
+          onCreateNewMapClick = {this.CreateNewMapHandler}
+          />
         <MapImg
-          id={this.state.activeMap.id}
-          latitude={this.state.activeMap.position.x}
-          longtitude={this.state.activeMap.position.y}
-          zoom={this.state.activeMap.zoom}
-          markers={this.state.activeMap.markers}
+          activeMap={this.state.activeMap}
+          newMap={this.state.newMap}
       /> 
         {this.state.maps.length ? (<MapNavBar 
                                       maps={this.state.maps} 
