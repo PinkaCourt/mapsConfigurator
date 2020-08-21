@@ -1,3 +1,5 @@
+/*
+
 import React, {Component} from 'react';
 import ReactMapboxGl, { Layer, Feature, Marker} from 'react-mapbox-gl';
 //import {setUserLocation} from '../func.js'
@@ -10,7 +12,7 @@ const Map = ReactMapboxGl({
   accessToken: MAPBOX_TOKEN,
   });
 
-const STYLEMAP ='mapbox://styles/mapbox/streets-v8';
+const STYLEMAP ="mapbox://styles/mapbox/streets-v8";
 const markerUrl = 'https://image.flaticon.com/icons/svg/2196/2196761.svg';
 class MapImg extends Component {
     constructor(props) {
@@ -37,19 +39,27 @@ class MapImg extends Component {
                   }}
               mapboxApiAccessToken={MAPBOX_TOKEN}
         >
+          <Layer 
+            type="symbol"
+            id="markerLayer"
+            layout={
+              {'icon-image': 'harbor-15'}
+              }
+            >
+
             {mapProps.markers.map((e) => {
               return (
                 <Marker
                   key = {e.accessPoint}
-                  coordinates={[e.position.longitude , e.position.latitude]}
+                  coordinates={e.position}
                   anchor="bottom">
                   <img src={markerUrl}/>
 
                 </Marker>
-                 )
-               })
-             }
-
+              )
+            })
+          }
+          </Layer>
         </Map>
             </div>
           )
@@ -60,11 +70,4 @@ class MapImg extends Component {
   }
 
 export default MapImg;
-
-
-/*
-крч! свой маркер появляется если в слое не задана иконка, не все иконки слоя отображаются.
-автор ..... надеюсь ты не спишь ночами..... потому что сначала идет широта, а потом долгота! больной ты ублюдок
-
-..... a нет, это в геокартах  мудаки
 */

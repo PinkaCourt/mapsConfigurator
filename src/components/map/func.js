@@ -67,11 +67,14 @@ export async function getMaps(AUTH) {
       })
     dataMarkers.map(e => {
     const marker = {
-      'component_name': e.component_name,
-      /*'cameraId': endpoint,*/
-      'position': e.position,
+      accessPoint: e.component_name,
+      position: {
+        latitude: e.position.y ,
+        longitude: e.position.x
+        },
       };
-      markers.push(marker);
+    console.log('marker', marker);
+    markers.push(marker);
     })
     return markers;
   }

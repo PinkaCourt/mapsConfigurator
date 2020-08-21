@@ -21,16 +21,22 @@ class Map extends Component {
     super(props);
     this.state = {
       maps: [],
-      'displayNew': false,
+      displayNew: false,
       activeMap: {
-        'id': '',
-        'position': {
+        id: '',
+        position: {
               'x': null,
               'y': null
             },
-        'zoom': null,
-        'name': '',
-        'markers':[],
+        zoom: null,
+        name: '',
+        markers: [{
+          accessPoint: '',
+          coordinates: {
+            x: null,
+            y: null
+            },
+          }],
         },
       }
   }
@@ -51,6 +57,8 @@ class Map extends Component {
   
   onSelectMapBookmarkHandler = async (id, position, zoom, name) => {
     const markers  = await getMapsMarkers(AUTH, id);
+    //console.log('markers: ' , markers)
+
     let activeMap = {
       'id': id,
       'position': position,
@@ -58,6 +66,7 @@ class Map extends Component {
       'name': name,
       'markers': markers,
     };
+
     this.setState({activeMap});
   }
 // только Москва, только хардкор
@@ -65,14 +74,20 @@ class Map extends Component {
       //console.log('navigator.geolocation');
 
       let activeMap = {
-        'id': getUuid(),
-        'position': {
+        id: getUuid(),
+        position: {
           'x': 37.615560,
           'y': 55.752220
         },
-        'zoom': [10],
-        'name': 'new map',
-        'markers':[],
+        zoom: [10],
+        name: 'new map',
+        markers: [{
+          accessPoint: '',
+          coordinates: {
+            longitude: null,
+            latitude: null
+            },
+          }],
         };
       this.setState({
           activeMap
@@ -80,7 +95,6 @@ class Map extends Component {
        this.setState({
         displayNew: !this.state.displayNew
      });
-      //console.log(activeMap, displayNew)
 
       /*
       navigator.geolocation.getCurrentPosition(position => {
@@ -126,23 +140,22 @@ class Map extends Component {
 
     cameras.map( e => {
       let cameraGeo;
-
       if (e.latitude !== '0,000000' && e.longitude !== '0,000000') {
         cameraGeo = {
-          "accessPoint": e.videoStreams[0].accessPoint,
-          'position': {
-            'x': parseFloat(e.latitude.replace(',', '.')),
-            'y': parseFloat(e.longitude.replace(',', '.')),
-              },
+          accessPoint: e.videoStreams[0].accessPoint,
+          position: {
+            latitude: parseFloat(e.latitude.replace(',', '.')),
+            longitude: parseFloat(e.longitude.replace(',', '.'))
+          },
         }
         camerasForMap.push(cameraGeo);
       } else {
         cameraGeo = {
-        "accessPoint": e.videoStreams[0].accessPoint,
-        'position': {
-          'x': coordinateRandom(mapPosition.x),
-          'y': coordinateRandom(mapPosition.y),
-            }
+        accessPoint: e.videoStreams[0].accessPoint,
+        position: {
+          latitude: coordinateRandom(mapPosition.y),
+          longitude: coordinateRandom(mapPosition.x)
+        }
           };
         camerasForMap.push(cameraGeo)
         }

@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import {Marker} from 'react-mapbox-gl';
 
@@ -15,3 +16,4 @@ const CameraMarker = (props) => {
         }
 
 export default CameraMarker;
+*/

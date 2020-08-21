@@ -8,7 +8,7 @@ export function coordinateRandom(coordinate) {
     //сдвиг координат
     let k = parseFloat('0.000' + crypto.getRandomValues(new Uint8Array(1))[0])
     let randomCoordinates;
-    // "рандомно складываем или вычитаем координату из коэффициента"
+    // "рандомно складываем или вычитаем координату c коэффициентом"
     Math.random() > 0.5 ? 
         randomCoordinates = round((coordinate + k), 6) :
         randomCoordinates = round((coordinate - k), 6);
