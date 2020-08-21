@@ -17,36 +17,12 @@ class MapImg extends Component {
     super(props);
     }
 
-  /*state = {
-    viewport: {},
-    userLocation: {}
-  };*/
-
-  /*
-  
-    state = {
-    viewport: {
-        width: 400,
-        height: 400,
-        latitude: 37.61556, //Долгота y
-        longitude: 55.75222, //Широта x
-        zoom: [10],
-       // renderChildrenInPortal: true,
-        markers:[[37.65860, 55.64225],[37.61870, 55.74335]],
-        
-    },
-    userLocation: {}
-  };
-  
-  */
-
     render() {
       console.log('props Map: ' , this.props)
       if (!this.props.activeMap.id) {
         return <div></div>
       } else {
-        let mapProps;
-        this.props.newMap.display ? mapProps = this.props.newMap : mapProps = this.props.activeMap;   
+        let mapProps = this.props.activeMap;   
 
         return (
           <div className="map_container">

@@ -5,7 +5,7 @@ import ToolBar from './components/map/topbar/ToolBar.jsx'
 import CameraListContainer from './components/cameralist/cameralist.jsx' 
 import Map from './components/map/Map.jsx' 
 
-
+/*
 import makeElement from './func/makeElement.js'
 import {GetOptions} from "./func/httpapi.js"
 import {PostOptions} from "./func/httpapi.js"
@@ -20,6 +20,8 @@ import {URL} from './constants/url.js'
 import {URLmaplist} from './constants/url.js'
 import {URLchangeMap} from './constants/url.js'
 import {URLhosts} from './constants/url.js'
+
+*/
 /*
 ReactDOM.render(
   <React.StrictMode>
@@ -100,39 +102,6 @@ document.getElementById('getGeolocation').addEventListener("click", function() {
   let geoPosition = navigator.geolocation.getCurrentPosition(success,  error  )
 });
 */
-
-/*
-removeMapsButton.addEventListener("click", getMaps(AUTH)
-    .then(() =>
-        fetch(URLchangeMap, new PostOptions(AUTH, new ToDelete(toDeleteMaps)))
-        .then(res => res.json())
-        )   } 
-);
-*/
-
-
-/*
-document.getElementById('barrelButton').addEventListener("click", function() {
-  while (resultDiv.firstChild !== resultDiv.lastChild) {
-    resultDiv.removeChild(resultDiv.lastChild);
-  }
-})
-*/
-
-
-//let camerasID = [];
-/*
-function selectCameraID(e) {
-  let value = e.displayId;
-  camerasID.push(value);
-}
-*/
-
-/*
-getCamerasbutton.addEventListener("click", getCameras (AUTH) 
-);
-  */
-
 
 
   /*
