@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from './buttons/Button.jsx'
 import CreateNewMapButton from './buttons/CreateNewMapButton.jsx'
+import AddCamerasOnMapBatton from './buttons/AddCamerasOnMapBatton.jsx'
 import {log} from '../../../func/cameras.js'
 import {getHost} from '../../../func/cameras.js'
 import {GetOptions} from '../../../func/httpapi.js'
@@ -28,7 +29,7 @@ export default class ToolBar extends Component {
       //{value: 'To create Map'},
       {value: 'Get Geolocation'},
       {value: 'Remove Maps'},
-      {value: 'Korean random'},
+      //{value: 'Korean random'},
       {value: 'do a barrel roll'}
     ],
     hosts:[]
@@ -41,6 +42,9 @@ export default class ToolBar extends Component {
         <div className="map--topbar">
           <CreateNewMapButton 
             onCreateNewMapClick={this.props.onCreateNewMapClick}
+            />
+          <AddCamerasOnMapBatton
+            addAllCamerasOnMapClick={this.props.addAllCamerasOnMapClick}
             />
           {this.state.buttons.map((e, index) => {
             return (

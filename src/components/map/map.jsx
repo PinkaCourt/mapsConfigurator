@@ -6,9 +6,14 @@ import MapNavBar from './navbar/MapNavBar.jsx'
 import {GetOptions} from '../../func/httpapi.js'
 import {getMaps} from './func.js'
 import {getMapsMarkers} from './func.js'
+import {getUuid} from './func.js'
 import {AUTH} from '../../constants/input.js'
 import {URLmaplist} from '../../constants/url.js'
+import {mathSymbolRandom} from '../../func/random.js'
+import {randomDelta} from '../../func/random.js'
 import ToolBar from './topbar/ToolBar.jsx'
+import {getCameras} from './cameralist/func.js'
+
 
 //это высший класс со стэйтом
 class Map extends Component {
@@ -77,7 +82,7 @@ class Map extends Component {
           console.log('position.coords.longitude' , position.coords.longitude)
          let newMap = {
           'display': true,
-          'id': '1',
+          'id': getUuid(),
           'position': {
             'x': position.coords.longitude,
             'y': position.coords.latitude
@@ -121,12 +126,50 @@ class Map extends Component {
 
   }
 
+
+  addAllCamerasOnMapHandler = async () => {
+    const mapPosition = this.state.newMap.position;
+    console.log('koreanrandom');
+    const mapID;
+    this.state.activeMap.id ? mapID = this.state.activeMap.id :  mapID = this.state.newMap.id
+
+    const cameras = await getCameras(AUTH);
+
+    let camerasForMap = [];
+    cameras.map = (e) => {
+      let cameraGeo;
+      if (e.latitude.length & e.longitude.length) {
+        cameraGeo = {
+          "accessPoint": e.videoStreams[0].accessPoint,
+          'position': {
+            'x': e.latitude,
+            'y': e.longitude
+            },
+        }
+        camerasForMap.push(cameraGeo)
+      } else {
+        cameraGeo = {
+        "accessPoint": e.videoStreams[0].accessPoint,
+        'position': {
+          'x': mathSymbolRandom(randomDelta(),mapPosition.x),
+          'y': mathSymbolRandom(randomDelta(),mapPosition.y),
+        }
+       };
+       camerasForMap.push(cameraGeo)
+      }
+    }
+    // это по сути массив маркеров
+    console.log('camerasForMap', camerasForMap);
+    }
+
+
 //map_toolbar не должен рисоваться если карт нет (+)
   render() {
      return (
       <div className="map_wrapper">
         <ToolBar 
           onCreateNewMapClick = {this.CreateNewMapHandler}
+          addAllCamerasOnMapClick = {this.addAllCamerasOnMapHandler}
           />
         <MapImg
           activeMap={this.state.activeMap}
