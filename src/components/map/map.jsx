@@ -1,43 +1,23 @@
-//эта не готова
 import React, {Component} from 'react';
-import { Layer, Feature } from 'react-mapbox-gl';
+
 import MapImg from './Mapimg/Mapimg.jsx'
 import MapNavBar from './navbar/MapNavBar.jsx'
-import {GetOptions} from '../../func/httpapi.js'
 import {getMaps} from './func.js'
 import {getMapsMarkers} from './func.js'
 import {getUuid} from './func.js'
 import {AUTH} from '../../constants/input.js'
-import {URLmaplist} from '../../constants/url.js'
 import {coordinateRandom} from '../../func/random.js'
-import {randomDelta} from '../../func/random.js'
 import ToolBar from './topbar/ToolBar.jsx'
 import {getCameras} from '../cameralist/func.js'
 
-
-//это высший класс со стэйтом
 class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
       maps: [],
       displayNew: false,
-      activeMap: {
-        id: '',
-        position: {
-              'x': null,
-              'y': null
-            },
-        zoom: null,
-        name: '',
-        markers: [{
-          accessPoint: '',
-          coordinates: {
-            x: null,
-            y: null
-            },
-          }],
-        },
+      activeMap: {},
+      markers: [],
       }
   }
 
@@ -52,27 +32,23 @@ class Map extends Component {
       const maps = await getMaps(AUTH);
       this.setState({maps});
     }
-
   }
   
   onSelectMapBookmarkHandler = async (id, position, zoom, name) => {
     const markers  = await getMapsMarkers(AUTH, id);
-    //console.log('markers: ' , markers)
-
     let activeMap = {
       'id': id,
       'position': position,
       'zoom': [zoom],
       'name': name,
-      'markers': markers,
     };
-
     this.setState({activeMap});
+    this.setState({markers});
   }
+
 // только Москва, только хардкор
   CreateNewMapHandler = () => {
       //console.log('navigator.geolocation');
-
       let activeMap = {
         id: getUuid(),
         position: {
@@ -81,87 +57,56 @@ class Map extends Component {
         },
         zoom: [10],
         name: 'new map',
-        markers: [{
-          accessPoint: '',
-          coordinates: {
-            longitude: null,
-            latitude: null
-            },
-          }],
         };
+      let markers = [];
+
+      this.setState({activeMap});
+      this.setState({markers});
       this.setState({
-          activeMap
-       });
-       this.setState({
         displayNew: !this.state.displayNew
-     });
-
-      /*
-      navigator.geolocation.getCurrentPosition(position => {
-         let setUserLocation = {
-             lat: position.coords.latitude,
-             long: position.coords.longitude
-          };
-        console.log('longitude' , position.coords.longitude)
-         let newMap = {
-          'display': true,
-          'id': getUuid(),
-          'position': {
-            'x': position.coords.longitude,
-            'y': position.coords.latitude
-          },
-          'zoom': 8,
-          'name': 'new map',
-          'markers':[],
-          };
-          let activeMap = {
-            'id': '',
-            'position': 
-                  {'x': null,
-                  'y': null},
-            'zoom': null,
-            'name': '',
-            'markers':[],
-            }
-
-          this.setState({
-            newMap, activeMap
-         });
-      });*/
+      });   
   }
 
   addAllCamerasOnMapHandler = async () => {
     const mapPosition = this.state.activeMap.position;
     //console.log('mapPosition', mapPosition);
-    let mapID;
-    this.state.activeMap.id ? mapID = this.state.activeMap.id :  mapID = this.state.activeMap.id;
+    let mapID = this.state.activeMap.id
+
     let cameras = await getCameras(AUTH);
-    let camerasForMap = [];
+    let markers = [];
 
     cameras.map( e => {
       let cameraGeo;
-      if (e.latitude !== '0,000000' && e.longitude !== '0,000000') {
+      // надо переписать
+      if ((e.latitude !== '0,000000' && e.longitude !== '0,000000') &&
+          (e.latitude.length && e.longitude.length )) {
         cameraGeo = {
           accessPoint: e.videoStreams[0].accessPoint,
+          cameraID: e.displayId,
+          cameraName: e.displayName,
           position: {
-            latitude: parseFloat(e.latitude.replace(',', '.')),
-            longitude: parseFloat(e.longitude.replace(',', '.'))
+            x: parseFloat(e.longitude.replace(',', '.')),
+            y: parseFloat(e.latitude.replace(',', '.')),
           },
         }
-        camerasForMap.push(cameraGeo);
+        markers.push(cameraGeo);
       } else {
         cameraGeo = {
         accessPoint: e.videoStreams[0].accessPoint,
+        cameraID: e.displayId,
+        cameraName: e.displayName,
         position: {
-          latitude: coordinateRandom(mapPosition.y),
-          longitude: coordinateRandom(mapPosition.x)
+          x: coordinateRandom(mapPosition.x),
+          y: coordinateRandom(mapPosition.y),
         }
           };
-        camerasForMap.push(cameraGeo)
+          markers.push(cameraGeo)
         }
     })
     // это по сути массив маркеров
-    console.log('camerasForMap', camerasForMap);
+    //console.log('markers', markers);
+    this.setState({markers});
+    console.log('markersforMap.markers', this.state.markers);
   }
 
 
@@ -175,8 +120,8 @@ class Map extends Component {
           />
         <MapImg
           activeMap={this.state.activeMap}
-          //newMap={this.state.newMap}
-      /> 
+          markers={this.state.markers}
+        /> 
         {this.state.maps.length ? (<MapNavBar 
                                       maps={this.state.maps} 
                                       activeMap = {this.state.activeMap}
@@ -213,3 +158,35 @@ const styles = {
             </Layer>
             */
 
+  /*
+      navigator.geolocation.getCurrentPosition(position => {
+         let setUserLocation = {
+             lat: position.coords.latitude,
+             long: position.coords.longitude
+          };
+        console.log('longitude' , position.coords.longitude)
+         let newMap = {
+          'display': true,
+          'id': getUuid(),
+          'position': {
+            'x': position.coords.longitude,
+            'y': position.coords.latitude
+          },
+          'zoom': 8,
+          'name': 'new map',
+          'markers':[],
+          };
+          let activeMap = {
+            'id': '',
+            'position': 
+                  {'x': null,
+                  'y': null},
+            'zoom': null,
+            'name': '',
+            'markers':[],
+            }
+
+          this.setState({
+            newMap, activeMap
+         });
+      });*/

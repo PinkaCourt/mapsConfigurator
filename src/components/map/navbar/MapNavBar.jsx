@@ -10,10 +10,10 @@ class MapNavBar extends Component {
   render() {
       return (
         <div className="map_toolbar">
-          {this.props.maps.map((e, index) => {
+          {this.props.maps.map((e) => {
             return (
               <MapItem
-                  key = {index}
+                  key = {e.id}
                   name = {e.name}
                   position = {e.position}
                   zoom = {e.zoom}
