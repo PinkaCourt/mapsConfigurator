@@ -1,44 +1,37 @@
 //import {getUuid} from './getUuid.js'
 
 export class MapProps {
-    constructor() {
-      this.name = new Date;
+    constructor(name, position, zoom) {
+      this.name = name;
       this.type = 'MAP_TYPE_GEO';
       this.position = {
-        x: localStorage.getItem('longitude'),
-        y: localStorage.getItem('latitude')
+        x: position.x,
+        y: position.y
       };
-      this.zoom = 17;
-      this.provider_id = '9cb89d76-67e9-47cf-8137-b9ee9fc46388'
-    }
-  }
-/*
-  export class Map {
-    constructor() {
-      this.id = getUuid();
-      this.sharing = {
-        kind: 'SHARING_KIND_NOT_SHARED',
-        shared_roles: []
-      };
-      this.map = new MapProps;
-    }
-  }
- */ 
-export class ToCreate {
-    constructor() {
-      this.created = new Map;
+      this.zoom = zoom;
     }
   }
 
- export class ToDelete {
-    constructor(array) {
-      this.removed = new Set(array);
+ export class ToDeleteMap {
+    constructor(mapID) {
+      this.removed = [mapID];
     }
   }
-  
-
-  export class MapMarkers {
+export class MapMarkers {
     constructor(mapID) {
       this.map_id = mapID;
+    }
+  }
+
+export class GeoMap {
+  constructor(id, name, position, zoom, markers) {
+    this.id = id;
+    this.map = new MapProps;
+    this.markers = markers;
+    }
+  }
+export class ToCreateGeoMap {
+  constructor() {
+    this.created = new GeoMap;
     }
   }

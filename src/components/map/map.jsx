@@ -4,7 +4,9 @@ import MapImg from './Mapimg/Mapimg.jsx'
 import MapNavBar from './navbar/MapNavBar.jsx'
 import {getMaps} from './func.js'
 import {getMapsMarkers} from './func.js'
+import {deleteMap} from './func.js'
 import {getUuid} from './func.js'
+
 import {AUTH} from '../../constants/input.js'
 import {coordinateRandom} from '../../func/random.js'
 import ToolBar from './topbar/ToolBar.jsx'
@@ -44,6 +46,9 @@ class Map extends Component {
     };
     this.setState({activeMap});
     this.setState({markers});
+    this.setState({
+      displayNew: false
+    }); 
   }
 
 // только Москва, только хардкор
@@ -63,7 +68,7 @@ class Map extends Component {
       this.setState({activeMap});
       this.setState({markers});
       this.setState({
-        displayNew: !this.state.displayNew
+        displayNew: true
       });   
   }
 
@@ -106,9 +111,23 @@ class Map extends Component {
     // это по сути массив маркеров
     //console.log('markers', markers);
     this.setState({markers});
-    console.log('markersforMap.markers', this.state.markers);
+    console.log('this.state', this.state);
   }
 
+  saveChangesHandler = () => {
+    console.log ('saveChangesHandler')
+  }
+
+  cancelChangesHandler = () => {
+    console.log ('cancelChangesHandler')
+  }
+
+  deleteMapHandler = async () => {
+    await deleteMap(AUTH, this.state.activeMap.id);
+    console.log ('delete: ', this.state.activeMap.id);
+    //выбираться должна другая карта
+
+  }
 
 //map_toolbar не должен рисоваться если карт нет (+)
   render() {
@@ -117,6 +136,11 @@ class Map extends Component {
         <ToolBar 
           onCreateNewMapClick = {this.CreateNewMapHandler}
           addAllCamerasOnMapClick = {this.addAllCamerasOnMapHandler}
+          deleteMapClick = {this.deleteMapHandler}
+          saveChangesClick = {this.saveChangesHandler}
+          cancelChangesClick = {this.cancelChangesHandler}
+          displayNew={this.state.displayNew}
+          activeMap={this.state.activeMap}
           />
         <MapImg
           activeMap={this.state.activeMap}
@@ -133,60 +157,3 @@ class Map extends Component {
 }
 
 export default Map;
-
-/*
-const styles = {
-	map_wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '100%',
-  },
-	map_container: {
-    backgroundColor: '#337361',
-    height: '100%',
-  },
-	map_toolbar: {
-		display: 'flex',
-    backgroundColor: '#334361',
-    height: '30px',
-	},
-};
-
-            <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-              <Feature coordinates={[55.609928131103516, 37.590171813964844]} />
-            </Layer>
-            */
-
-  /*
-      navigator.geolocation.getCurrentPosition(position => {
-         let setUserLocation = {
-             lat: position.coords.latitude,
-             long: position.coords.longitude
-          };
-        console.log('longitude' , position.coords.longitude)
-         let newMap = {
-          'display': true,
-          'id': getUuid(),
-          'position': {
-            'x': position.coords.longitude,
-            'y': position.coords.latitude
-          },
-          'zoom': 8,
-          'name': 'new map',
-          'markers':[],
-          };
-          let activeMap = {
-            'id': '',
-            'position': 
-                  {'x': null,
-                  'y': null},
-            'zoom': null,
-            'name': '',
-            'markers':[],
-            }
-
-          this.setState({
-            newMap, activeMap
-         });
-      });*/

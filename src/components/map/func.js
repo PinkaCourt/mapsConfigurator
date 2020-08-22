@@ -1,9 +1,14 @@
 import {URLmaplist} from '../../constants/url.js'
 import {URLMapMarkers} from '../../constants/url.js'
 
+import {URLchangeMap} from '../../constants/url.js'
+
 import {GetOptions} from '../../func/httpapi.js'
 import {PostOptions} from '../../func/httpapi.js'
 
+
+
+import {ToDeleteMap} from '../../func/bodys.js'
 import {MapMarkers} from '../../func/bodys.js'
 
 export async function getMaps(AUTH) {
@@ -80,4 +85,32 @@ export function  getUuid() {
   }
 
 
+export async function createMap(AUTH, mapID) {
 
+    let markers = [];
+    let dataMarkers;
+    
+    await fetch(URLchangeMap, new PostOptions(AUTH, new MapMarkers(mapID)))
+     .then(res => res.json())
+     .then(data => {
+       dataMarkers = Object.values(data.markers)
+      })
+    dataMarkers.map(e => {
+    const marker = {
+      accessPoint: e.component_name,
+      position: {
+        y: e.position.y ,
+        x: e.position.x
+        },
+      };
+    //console.log('marker', marker);
+    markers.push(marker);
+    })
+    return markers;
+  }
+
+
+export async function deleteMap(AUTH, mapID) {
+  await fetch(URLchangeMap, new PostOptions(AUTH, new ToDeleteMap(mapID)))
+  .then(res => res.json())
+  }
