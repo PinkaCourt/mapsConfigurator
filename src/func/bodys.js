@@ -1,4 +1,4 @@
-import {getUuid} from './getUuid.js'
+//import {getUuid} from './getUuid.js'
 
 export class MapProps {
     constructor() {
@@ -12,7 +12,7 @@ export class MapProps {
       this.provider_id = '9cb89d76-67e9-47cf-8137-b9ee9fc46388'
     }
   }
-
+/*
   export class Map {
     constructor() {
       this.id = getUuid();
@@ -23,7 +23,7 @@ export class MapProps {
       this.map = new MapProps;
     }
   }
-  
+ */ 
 export class ToCreate {
     constructor() {
       this.created = new Map;
