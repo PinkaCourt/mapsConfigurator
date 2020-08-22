@@ -5,13 +5,11 @@ function round(value, decimals) {
 
 // должен принимать только флот
 export function coordinateRandom(coordinate) {
-    //сдвиг координат
-    let k = parseFloat('0.000' + crypto.getRandomValues(new Uint8Array(1))[0])
+    let k = parseFloat('0.0' + crypto.getRandomValues(new Uint8Array(1))[0])
     let randomCoordinates;
-    // "рандомно складываем или вычитаем координату c коэффициентом"
-    Math.random() > 0.5 ? 
-        randomCoordinates = round((coordinate + k), 6) :
-        randomCoordinates = round((coordinate - k), 6);
-    //console.log('randomCoordinates', randomCoordinates)
+
+    Math.random() > 0.5 
+        ? randomCoordinates = round((coordinate + k), 6) 
+        : randomCoordinates = round((coordinate - k), 6);
     return randomCoordinates;
     }
