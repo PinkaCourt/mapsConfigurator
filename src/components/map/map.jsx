@@ -4,8 +4,11 @@ import MapImg from './Mapimg/Mapimg.jsx'
 import MapNavBar from './navbar/MapNavBar.jsx'
 import {getMaps} from './func.js'
 import {getMapsMarkers} from './func.js'
+import {createMap} from './func.js'
 import {deleteMap} from './func.js'
 import {getUuid} from './func.js'
+import {changeMapMarkers} from './func.js'
+
 
 import {AUTH} from '../../constants/input.js'
 import {coordinateRandom} from '../../func/random.js'
@@ -36,19 +39,24 @@ class Map extends Component {
     }
   }
   
-  onSelectMapBookmarkHandler = async (id, position, zoom, name) => {
+  onSelectMapBookmarkHandler = async (id, etag, name, position, zoom) => {
+   // let MapID = this.state.activeMap.id;
+
     const markers  = await getMapsMarkers(AUTH, id);
     let activeMap = {
-      'id': id,
-      'position': position,
-      'zoom': [zoom],
-      'name': name,
+      id: id,
+      etag: etag,
+      name: name,
+      position: position,
+      zoom: zoom,
     };
     this.setState({activeMap});
     this.setState({markers});
     this.setState({
       displayNew: false
     }); 
+    console.log( 'this.activeMap', this.state.activeMap);
+    //console.log( 'this.maps', this.state.maps);
   }
 
 // только Москва, только хардкор
@@ -56,11 +64,12 @@ class Map extends Component {
       //console.log('navigator.geolocation');
       let activeMap = {
         id: getUuid(),
+        etag: '',
         position: {
           'x': 37.615560,
           'y': 55.752220
         },
-        zoom: [10],
+        zoom: 10,
         name: 'new map',
         };
       let markers = [];
@@ -75,7 +84,7 @@ class Map extends Component {
   addAllCamerasOnMapHandler = async () => {
     const mapPosition = this.state.activeMap.position;
     //console.log('mapPosition', mapPosition);
-    let mapID = this.state.activeMap.id
+    //let mapID = this.state.activeMap.id
 
     let cameras = await getCameras(AUTH);
     let markers = [];
@@ -111,11 +120,21 @@ class Map extends Component {
     // это по сути массив маркеров
     //console.log('markers', markers);
     this.setState({markers});
-    console.log('this.state', this.state);
+    console.log('this.state.markers', this.state.markers);
   }
 
-  saveChangesHandler = () => {
-    console.log ('saveChangesHandler')
+  saveChangesHandler = async () => {
+    
+    const map = this.state.activeMap;
+    const markers = this.state.markers;
+
+    this.state.displayNew 
+      ? await createMap(AUTH, map, markers)
+      : await changeMapMarkers(AUTH, map, markers);
+
+    const maps = await getMaps(AUTH);
+    this.setState({maps});
+
   }
 
   cancelChangesHandler = () => {
@@ -124,12 +143,22 @@ class Map extends Component {
 
   deleteMapHandler = async () => {
     await deleteMap(AUTH, this.state.activeMap.id);
-    console.log ('delete: ', this.state.activeMap.id);
+    const maps = await getMaps(AUTH);
+    this.setState({maps});
     //выбираться должна другая карта
+        
+    let activeMap = {
+      id: null,
+      position: {},
+      etag: '',
+      zoom: null,
+      name: '',
+      };
+    this.setState({activeMap});
+    //надо добавить загрузку
 
   }
 
-//map_toolbar не должен рисоваться если карт нет (+)
   render() {
      return (
       <div className="map_wrapper">
@@ -146,11 +175,12 @@ class Map extends Component {
           activeMap={this.state.activeMap}
           markers={this.state.markers}
         /> 
-        {this.state.maps.length ? (<MapNavBar 
-                                      maps={this.state.maps} 
-                                      activeMap = {this.state.activeMap}
-                                      onMapClick = {this.onSelectMapBookmarkHandler}
-                                      />) : null}
+        {this.state.maps.length 
+          ? (<MapNavBar maps={this.state.maps} 
+                        activeMap = {this.state.activeMap}
+                        onMapClick = {this.onSelectMapBookmarkHandler}
+                        />) 
+          : null}
       </div>
       );
     }

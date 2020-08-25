@@ -1,14 +1,12 @@
-//import {getUuid} from './getUuid.js'
-
 export class MapProps {
-    constructor(name, position, zoom) {
-      this.name = name;
+    constructor(map) {
+      this.name = map.name;
       this.type = 'MAP_TYPE_GEO';
       this.position = {
-        x: position.x,
-        y: position.y
+        x: map.position.x,
+        y: map.position.y
       };
-      this.zoom = zoom;
+      this.zoom = map.zoom;
     }
   }
 
@@ -24,14 +22,42 @@ export class MapMarkers {
   }
 
 export class GeoMap {
-  constructor(id, name, position, zoom, markers) {
-    this.id = id;
-    this.map = new MapProps;
-    this.markers = markers;
+  constructor(map, markers) {
+    this.id = map.id;
+    this.map = new MapProps(map);
+    this.markers = new Array (markers);
     }
   }
 export class ToCreateGeoMap {
-  constructor() {
-    this.created = new GeoMap;
+  constructor(map, markers) {
+    this.created = new GeoMap(map, markers);
     }
   }
+
+export class ChangedMap {
+    constructor(map, markers) {
+      this.etag = map.etag;
+      this.map_id = map.id;
+      this.map = new MapProps(map);
+      }
+    }
+
+export class ToChangeGeoMap {
+    constructor(map, markers) {
+      this.updated = new ChangedMap(map);
+      }
+    }
+
+
+    export class ToChangedMarkers {
+      constructor(map, markers) {
+        this.changed = new UpdateMarkers(map, markers);
+      }
+    }
+
+    export class UpdateMarkers {
+      constructor(map, markers) {
+        this.map_id = map.id;
+        this.updated = markers;
+      }
+    }

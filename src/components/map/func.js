@@ -1,15 +1,17 @@
 import {URLmaplist} from '../../constants/url.js'
-import {URLMapMarkers} from '../../constants/url.js'
-
 import {URLchangeMap} from '../../constants/url.js'
+import {URLMapMarkers} from '../../constants/url.js'
+import {URLMapMarkersUpdate} from '../../constants/url.js'
 
 import {GetOptions} from '../../func/httpapi.js'
 import {PostOptions} from '../../func/httpapi.js'
 
 
-
+import {ToCreateGeoMap} from '../../func/bodys.js'
 import {ToDeleteMap} from '../../func/bodys.js'
 import {MapMarkers} from '../../func/bodys.js'
+import {ToChangeGeoMap} from '../../func/bodys.js'
+import {ToChangedMarkers} from '../../func/bodys.js'
 
 export async function getMaps(AUTH) {
   let maps = [];
@@ -19,11 +21,13 @@ export async function getMaps(AUTH) {
    .then(data => {dataMaps = data.items}
       )
   dataMaps.map(item => {
+    console.log('item.meta.etag' , item.meta.etag)
     const map = {
-      'name': item.data.name,
-      'id': item.meta.id,
-      'position': item.data.position,
-      'zoom': item.data.zoom,
+      etag: item.meta.etag,
+      name: item.data.name,
+      id: item.meta.id,
+      position: item.data.position,
+      zoom: item.data.zoom,
       };
     maps.push(map);
     })
@@ -37,31 +41,7 @@ export function  getUuid() {
     )
   }
 
-  
-//хз. работает или нет
-/*
-  export function setUserLocation() {
-    navigator.geolocation.getCurrentPosition(position => {
-       let setUserLocation = {
-           lat: position.coords.latitude,
-           long: position.coords.longitude
-        };
-       let newViewport = {
-          height: "400",
-          width: "400",
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          zoom: [8],
-          renderChildrenInPortal: true,
-        };
-        this.setState({
-          viewport: newViewport,
-          userLocation: setUserLocation
-       });
-    });
-  };
-*/
-  export async function getMapsMarkers(AUTH, mapID) {
+export async function getMapsMarkers(AUTH, mapID) {
     let markers = [];
     let dataMarkers;
     
@@ -78,39 +58,76 @@ export function  getUuid() {
         x: e.position.x
         },
       };
-    //console.log('marker', marker);
+
     markers.push(marker);
     })
     return markers;
   }
 
 
-export async function createMap(AUTH, mapID) {
+export async function createMap(AUTH, map, markers) {
+  let markersforMap = [];
 
-    let markers = [];
-    let dataMarkers;
-    
-    await fetch(URLchangeMap, new PostOptions(AUTH, new MapMarkers(mapID)))
-     .then(res => res.json())
-     .then(data => {
-       dataMarkers = Object.values(data.markers)
-      })
-    dataMarkers.map(e => {
-    const marker = {
-      accessPoint: e.component_name,
-      position: {
-        y: e.position.y ,
-        x: e.position.x
+  markers.map((e)=>{
+    let marker = {
+      position: e.position,
+      component_name: e.accessPoint,
+      display_title: true,
+      camera_marker: {
+        field_of_view: {
+            angle: 50,
+            direction: {
+                x: 0,
+                y: 60
+            }
         },
-      };
-    //console.log('marker', marker);
-    markers.push(marker);
-    })
-    return markers;
+        video_frame_arrangement: {
+            incline: 0,
+            distance: 0,
+            angle: 0
+        }
+      }
+    };
+    markersforMap.push(marker)
+  })
+
+  await fetch(URLchangeMap, new PostOptions(AUTH, new ToCreateGeoMap(map, markersforMap)))
+    .then(res => res.json())
+}
+
+export async function changeMapMarkers(AUTH, map, markers) {
+  let markersforMap = [];
+  console.log(AUTH, map, markers)
+
+  markers.map((e)=>{
+    let marker = {
+      position: e.position,
+      component_name: e.accessPoint,
+      display_title: true,
+      camera_marker: {
+        field_of_view: {
+            angle: 50,
+            direction: {
+                x: 0,
+                y: 60
+            }
+        },
+        video_frame_arrangement: {
+            incline: 0,
+            distance: 0,
+            angle: 0
+        }
+      }
+    };
+    markersforMap.push(marker)
+  })
+
+  await fetch(URLMapMarkersUpdate, new PostOptions(AUTH, new ToChangedMarkers(map, markersforMap)))
+  .then(res => res.json())
   }
 
 
 export async function deleteMap(AUTH, mapID) {
   await fetch(URLchangeMap, new PostOptions(AUTH, new ToDeleteMap(mapID)))
-  .then(res => res.json())
   }
+

@@ -11,6 +11,9 @@ const Map = ReactMapboxGl({
 const STYLEMAP ='mapbox://styles/mapbox/streets-v8';
 const markerUrl = 'https://image.flaticon.com/icons/svg/2196/2196761.svg';
 
+
+
+
 class MapImg extends Component {
     constructor(props) {
     super(props);
@@ -36,39 +39,28 @@ class MapImg extends Component {
               //attributionControl= 'false' 
 
             >
-            <Layer type="circle" id="marker" paint={{
-              'circle-color': "#ff5200",
-              'circle-stroke-width': 1,
-              'circle-stroke-color': '#fff',
-              'circle-stroke-opacity': 1
-            }}>
+
               {this.props.markers.map((e) => {
-                console.log('this.props.markers.map', e)
+                //console.log('this.props.markers.map', e)
               return (
-                <Feature
+                <Marker
                   key = {e.accessPoint}
                   coordinates={[e.position.x , e.position.y]}
-                  draggable = {true}
-                  
-                  >
-                  <p4>{e.cameraID}</p4>
+                  anchor="top"
+                   >
+                  <img src={markerUrl}/>
+                  <h5>{e.cameraName}</h5>
 
-                </Feature>
+                </Marker>
               )
                 })
                 }
-              </Layer>
+
+
 
               <ZoomControl
                 position = 'top-left'
                 />
-              {/* <ScaleControl/> */}
-
-              {/* <RotationControl/> */}
-
-              {/* <ScaleControl/> */}
-
-              {/* <ScaleControl/> */}
 
             </Map>
           </div>

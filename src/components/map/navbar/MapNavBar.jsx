@@ -8,16 +8,18 @@ class MapNavBar extends Component {
 
 
   render() {
+    console.log('activeMap' , this.props.activeMap)
       return (
         <div className="map_toolbar">
           {this.props.maps.map((e) => {
             return (
               <MapItem
-                  key = {e.id}
+                  id = {e.id}
+                  etag = {e.etag}
                   name = {e.name}
                   position = {e.position}
                   zoom = {e.zoom}
-                  id = {e.id}
+                  key = {e.id}
                   onMapClick={this.props.onMapClick}
                   activeMap={this.props.activeMap}
                   />
