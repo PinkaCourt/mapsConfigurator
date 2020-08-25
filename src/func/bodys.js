@@ -47,17 +47,14 @@ export class ToChangeGeoMap {
       this.updated = new ChangedMap(map);
       }
     }
-
-
-    export class ToChangedMarkers {
-      constructor(map, markers) {
-        this.changed = new UpdateMarkers(map, markers);
-      }
+export class ToChangedMarkers {
+  constructor(map, markers) {
+    this.changed = new UpdateMarkers(map, markers);
     }
-
-    export class UpdateMarkers {
-      constructor(map, markers) {
-        this.map_id = map.id;
-        this.updated = markers;
-      }
+  }
+export class UpdateMarkers {
+  constructor(map, markers) {
+    this.map_id = map.id;
+    this.updated = markers;
     }
+  }

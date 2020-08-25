@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import CreateNewMapButton from './buttons/CreateNewMapButton.jsx'
 import AddCamerasOnMapBatton from './buttons/AddCamerasOnMapBatton.jsx'
 import SaveButton from './buttons/SaveButton.jsx'
@@ -12,7 +11,6 @@ export default class ToolBar extends Component {
     }
 
   render() {
-    //console.log(this.props)
     return (
       <div className="map--topbar">
           <CreateNewMapButton 
@@ -26,7 +24,6 @@ export default class ToolBar extends Component {
               deleteMapClick={this.props.deleteMapClick}
               />) 
             : null}
-          
           <SaveButton
             saveChangesClick={this.props.saveChangesClick}
             />
@@ -37,4 +34,3 @@ export default class ToolBar extends Component {
       );
   }
 }
-

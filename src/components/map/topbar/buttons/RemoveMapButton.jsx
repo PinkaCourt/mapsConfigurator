@@ -6,7 +6,6 @@ export class RemoveMapButton extends Component {
     }
 
   render() {
-    //console.log ('this.props_CreateNewMapButton' , this.props)
     return (
       <button
         onClick={() => this.props.deleteMapClick()}

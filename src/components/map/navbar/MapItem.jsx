@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 class MapItem extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +21,5 @@ class MapItem extends Component {
     )
   }
 }
-
 export default MapItem
 

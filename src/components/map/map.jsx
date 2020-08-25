@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import MapImg from './Mapimg/Mapimg.jsx'
 import MapNavBar from './navbar/MapNavBar.jsx'
 import {getMaps} from './func.js'
@@ -8,8 +7,6 @@ import {createMap} from './func.js'
 import {deleteMap} from './func.js'
 import {getUuid} from './func.js'
 import {changeMapMarkers} from './func.js'
-
-
 import {AUTH} from '../../constants/input.js'
 import {coordinateRandom} from '../../func/random.js'
 import ToolBar from './topbar/ToolBar.jsx'
@@ -40,8 +37,6 @@ class Map extends Component {
   }
   
   onSelectMapBookmarkHandler = async (id, etag, name, position, zoom) => {
-   // let MapID = this.state.activeMap.id;
-
     const markers  = await getMapsMarkers(AUTH, id);
     let activeMap = {
       id: id,
@@ -56,7 +51,6 @@ class Map extends Component {
       displayNew: false
     }); 
     console.log( 'this.activeMap', this.state.activeMap);
-    //console.log( 'this.maps', this.state.maps);
   }
 
 // только Москва, только хардкор

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ReactMapboxGl, { Layer, Feature, Marker, ZoomControl, ScaleControl, RotationControl , Popup } from 'react-mapbox-gl';
 
-
 const MAPBOX_TOKEN = 'pk.eyJ1IjoicGlua2Frb3J0IiwiYSI6ImNrM29ueHE1djF2bjEzZnJrbHU4b2h2aDMifQ.wGdsYfdCfpw7pbpva8-Qmw';
 
 const Map = ReactMapboxGl({
@@ -11,21 +10,16 @@ const Map = ReactMapboxGl({
 const STYLEMAP ='mapbox://styles/mapbox/streets-v8';
 const markerUrl = 'https://image.flaticon.com/icons/svg/2196/2196761.svg';
 
-
-
-
 class MapImg extends Component {
     constructor(props) {
     super(props);
     }
 
   render() {
-      //console.log('props Map: ' , this.props)
       if (!this.props.activeMap.id) {
         return <div></div>
       } else {
         let mapProps = this.props.activeMap;
-        //console.log('mapProps', mapProps);
         return (
           <div className="map_container">
           <Map
@@ -36,12 +30,9 @@ class MapImg extends Component {
                   height: '100%',
                   width: '100%'
                   }}
-              //attributionControl= 'false' 
-
             >
 
               {this.props.markers.map((e) => {
-                //console.log('this.props.markers.map', e)
               return (
                 <Marker
                   key = {e.accessPoint}
@@ -49,14 +40,12 @@ class MapImg extends Component {
                   anchor="top"
                    >
                   <img src={markerUrl}/>
-                  <h5>{e.cameraName}</h5>
+                  <h5>{e.cameraName} {' '} {e.cameraName}</h5>
 
                 </Marker>
               )
                 })
                 }
-
-
 
               <ZoomControl
                 position = 'top-left'
@@ -66,9 +55,7 @@ class MapImg extends Component {
           </div>
         )
       }
-       
     } 
- 
 }
 
 export default MapImg;

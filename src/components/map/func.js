@@ -10,7 +10,7 @@ import {PostOptions} from '../../func/httpapi.js'
 import {ToCreateGeoMap} from '../../func/bodys.js'
 import {ToDeleteMap} from '../../func/bodys.js'
 import {MapMarkers} from '../../func/bodys.js'
-import {ToChangeGeoMap} from '../../func/bodys.js'
+//import {ToChangeGeoMap} from '../../func/bodys.js'
 import {ToChangedMarkers} from '../../func/bodys.js'
 
 export async function getMaps(AUTH) {

@@ -6,7 +6,6 @@ export class SaveButton extends Component {
     }
 
   render() {
-    //console.log ('this.props_CreateNewMapButton' , this.props)
     return (
       <button
         onClick={() => this.props.saveChangesClick()}
