@@ -126,7 +126,7 @@ to del
   padding: 6px;
   font-weight: bold;
   }
-   
+/*  
 img {
   width: 30px;
   height: 30px
@@ -181,3 +181,14 @@ img {
   border: 10px solid transparent;
   border-top: 17px solid #fff;
 }
+*/
+
+  .mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+  
+  .mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+  }

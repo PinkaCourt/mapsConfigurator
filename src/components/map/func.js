@@ -2,6 +2,8 @@ import {URLmaplist} from '../../constants/url.js'
 import {URLchangeMap} from '../../constants/url.js'
 import {URLMapMarkers} from '../../constants/url.js'
 import {URLMapMarkersUpdate} from '../../constants/url.js'
+import {URLCameraSnapshot} from '../../constants/url.js'
+import {URLCameraInfo} from '../../constants/url.js'
 
 import {GetOptions} from '../../func/httpapi.js'
 import {PostOptions} from '../../func/httpapi.js'
@@ -21,7 +23,7 @@ export async function getMaps(AUTH) {
    .then(data => {dataMaps = data.items}
       )
   dataMaps.map(item => {
-    console.log('item.meta.etag' , item.meta.etag)
+    //console.log('item.meta.etag' , item.meta.etag)
     const map = {
       etag: item.meta.etag,
       name: item.data.name,
@@ -131,3 +133,27 @@ export async function deleteMap(AUTH, mapID) {
   await fetch(URLchangeMap, new PostOptions(AUTH, new ToDeleteMap(mapID)))
   }
 
+
+export function getCameraSnapshot(accessPoint) {
+  const VIDEOSOURCEID = accessPoint.replace(/hosts\//, '');
+  return URLCameraSnapshot + VIDEOSOURCEID;
+  }
+
+export async function getCameraInfo(AUTH, accessPoint) {
+  const URL = URLCameraInfo + accessPoint;
+  let camera = {};
+    await fetch(URL, new GetOptions(AUTH))
+    .then(res => res.json())
+    .then(data => camera = data.cameras[0])
+  return camera;
+  }
+  
+/*
+
+export async function gatCameraSnapshot(AUTH, accessPoint) {
+  const VIDEOSOURCEID = accessPoint.replace(/hosts\//, '');
+  const URL = URLCameraSnapshot + VIDEOSOURCEID;
+    await fetch(URL, new GetOptions(AUTH))
+    }
+*/
+  

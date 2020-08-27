@@ -6,9 +6,7 @@ class MapNavBar extends Component {
     super(props);
     };
 
-
   render() {
-    console.log('activeMap' , this.props.activeMap)
       return (
         <div className="map_toolbar">
           {this.props.maps.map((e) => {

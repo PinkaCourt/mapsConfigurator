@@ -11,6 +11,10 @@ import {AUTH} from '../../constants/input.js'
 import {coordinateRandom} from '../../func/random.js'
 import ToolBar from './topbar/ToolBar.jsx'
 import {getCameras} from '../cameralist/func.js'
+import {getCameraInfo} from './func.js'
+import {getCameraSnapshot} from './func.js'
+
+
 
 class Map extends Component {
   constructor(props) {
@@ -20,6 +24,7 @@ class Map extends Component {
       displayNew: false,
       activeMap: {},
       markers: [],
+      selectMarker: null
       }
   }
 
@@ -50,7 +55,10 @@ class Map extends Component {
     this.setState({
       displayNew: false
     }); 
-    console.log( 'this.activeMap', this.state.activeMap);
+    this.setState({
+      selectMarker: null
+    });
+    //console.log( 'this.activeMap', this.state.activeMap);
   }
 
 // только Москва, только хардкор
@@ -106,19 +114,19 @@ class Map extends Component {
         position: {
           x: coordinateRandom(mapPosition.x),
           y: coordinateRandom(mapPosition.y),
-        }
+            }
           };
-          markers.push(cameraGeo)
+      markers.push(cameraGeo)
         }
-    })
-    // это по сути массив маркеров
+      })
     //console.log('markers', markers);
+
+
     this.setState({markers});
-    console.log('this.state.markers', this.state.markers);
+    //console.log('this.state.markers', this.state.markers);
   }
 
   saveChangesHandler = async () => {
-    
     const map = this.state.activeMap;
     const markers = this.state.markers;
 
@@ -150,7 +158,23 @@ class Map extends Component {
       };
     this.setState({activeMap});
     //надо добавить загрузку
+  }
 
+  selectMarkerHandler = async (accessPoint, position) => {
+    //console.log ('selectMarkerHandler')
+    let camera =  await getCameraInfo(AUTH, accessPoint);
+    let snapshot = getCameraSnapshot(accessPoint);
+    console.log(snapshot)
+    const selectMarker = {
+      accessPoint: accessPoint,
+      cameraID: camera.displayId,
+      cameraName: camera.displayName,
+      isActivated: camera.isActivated,
+      position: position,
+      snapshot: snapshot,
+    }
+    this.setState({selectMarker});
+    console.log( selectMarker , this.state.selectMarker)
   }
 
   render() {
@@ -168,6 +192,9 @@ class Map extends Component {
         <MapImg
           activeMap={this.state.activeMap}
           markers={this.state.markers}
+          selectMarker={this.state.selectMarker}
+          onMarkerClick= {this.selectMarkerHandler}
+          onClose={() => this.setState({activeMap: null})}
         /> 
         {this.state.maps.length 
           ? (<MapNavBar maps={this.state.maps} 
@@ -175,6 +202,7 @@ class Map extends Component {
                         onMapClick = {this.onSelectMapBookmarkHandler}
                         />) 
           : null}
+        
       </div>
       );
     }
