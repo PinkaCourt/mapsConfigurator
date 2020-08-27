@@ -1,20 +1,16 @@
 export class GetOptions {
-  constructor(AUTH) {
+  constructor() {
     this.method = 'GET';
     this.headers = {
-      Authorization: AUTH,
       ContentType: 'application/json'
     };
   }
 }
 
 export class PostOptions {
-  constructor(AUTH, body) {
+  constructor(body) {
     this.method = 'POST',
-    //this.credentials = 'include',
     this.headers = {
-      Authorization: AUTH,
-      //ContentType: 'application/javascript'
       ContentType: 'application/json',
       },
     this.body = JSON.stringify(body)

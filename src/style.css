@@ -10,7 +10,6 @@ body {
   background-color: #e71717;
   display: flex;
   flex: 1 0 auto;
-
 }
 
 #sidebar {
@@ -23,10 +22,14 @@ body {
 .camera_item {
   margin: 1px auto;
   cursor: default;
+  color: rgb(180, 197, 235);
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 14px;
+
 }
 
 .camera_item:active {
-  background-color: #2e3f5f;
+  background-color: #839ac5;
 }
 
 .camera_item:nth-child(2n) {
@@ -79,29 +82,22 @@ li {
   border-top: 2px solid #3b578b;
   border-right: 2px solid #3b578b;
   border-radius: 10px 10px  0 0;
-  
   background-color: #32476e;
-  /*background: rgb(75,110,176);
-  background: linear-gradient(77deg, rgba(75,110,176,1) 0%, rgba(63,96,158,1) 10%, rgba(59,87,139,1) 50%, rgba(75,110,176,1) 90%);
-  */
+  color: rgb(180, 197, 235);  
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 13px;
   padding: 3px;
   cursor: default;
 }
-
-/*
-.map_bm:active {
-  background-color: #45da00;
-}
-*/
 
 .map_bm--active {
   background-color: #46659e;
   border-top: 2px solid #3b578b;
   border-right: 2px solid #3b578b;
-  /*box-shadow: 2px -2px 0px 7px rgba(59,87,139,1);*/
   border-radius: 10px 10px  0 0;
   padding: 3px;
   cursor: default;
+  color: rgb(5, 15, 36); 
 }
 
 
@@ -110,10 +106,6 @@ li {
   opacity: 70%;
 }
 
-
-/*
-to del
-*/
 .sidebarStyle {
   display: inline-block;
   position: absolute;
@@ -126,62 +118,7 @@ to del
   padding: 6px;
   font-weight: bold;
   }
-/*  
-img {
-  width: 30px;
-  height: 30px
-}
 
-
-.pin1 {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  margin-left: -115px;
-  
-  border-radius: 50% 50% 50% 0;
-  border: 4px solid #fff;
-  width: 20px;
-  height: 20px;
-  transform: rotate(-45deg);
-}
-
-.pin1::after {
-  position: absolute;
-  content: '';
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  margin-left: -5px;
-  margin-top: -5px;
-  background-color: #fff;
-}
-
-.pin2 {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  margin-left: 115px;
-  
-  border-radius: 50%;
-  border: 8px solid #fff;
-  width: 8px;
-  height: 8px;
-}
-
-.pin2::after {
-  position: absolute;
-  content: '';
-  width: 0px;
-  height: 0px;
-  bottom: -30px;
-  left: -6px;
-  border: 10px solid transparent;
-  border-top: 17px solid #fff;
-}
-*/
 
   .mapboxgl-popup {
     max-width: 400px;

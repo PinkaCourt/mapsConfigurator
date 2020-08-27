@@ -9,7 +9,7 @@ export class CreateNewMapButton extends Component {
     return (
       <button
         onClick={() => this.props.onCreateNewMapClick()}
-          > {'To create Map'} 
+          > {'Create Map'} 
             </button>)
   }
 }

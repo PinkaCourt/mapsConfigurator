@@ -9,7 +9,7 @@ export class AddCamerasOnMapBatton extends Component {
     return (
       <button
         onClick={() => this.props.addAllCamerasOnMapClick()}
-          > {'To add cameras on map random'} 
+          > {'Add All Cameras'} 
             </button>)
   }
 }

@@ -1,6 +1,8 @@
 import {IP} from '../constants/input.js'
 import {PORT} from '../constants/input.js'
 
+//export const URL = 'http://localhost'
+
 export const URL = 'http://' + IP + ':' + PORT
 export const URLgRPC = URL + '/grpc'
 export const URLhosts = URL + '/hosts'

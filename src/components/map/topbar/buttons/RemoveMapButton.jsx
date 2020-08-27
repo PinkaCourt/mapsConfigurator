@@ -9,7 +9,7 @@ export class RemoveMapButton extends Component {
     return (
       <button
         onClick={() => this.props.deleteMapClick()}
-          > {'Remove map'} 
+          > {'Remove Map'} 
             </button>)
   }
 }

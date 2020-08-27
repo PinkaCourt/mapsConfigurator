@@ -34,8 +34,14 @@ class MapImg extends Component {
 
             >
             <Layer
-              type="symbol"
-              layout={{ "icon-image": "marker-15" }}>
+              type="circle"
+              paint={{
+                'circle-color': '#1aaeed',
+                'circle-stroke-width': 1,
+                'circle-stroke-color': '#129fdb',
+                'circle-stroke-opacity': 1,
+                }}
+              >
             
               {this.props.markers.map((e) => {
                 return (
@@ -72,3 +78,9 @@ class MapImg extends Component {
 }
 
 export default MapImg;
+
+/*
+            <Layer
+              type="symbol"
+              layout={{ "icon-image": "marker-11" }}>
+*/

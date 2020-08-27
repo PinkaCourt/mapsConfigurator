@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AUTH} from '../../constants/input.js'
+import {} from '../../constants/input.js'
 import CameraItem from './CameraItem.jsx'
 import {GetOptions} from '../../func/httpapi.js'
 import {getCameras} from './func.js'
@@ -81,14 +81,14 @@ class CameraListContainer extends Component {
 	const {cameras} = this.state;
 
 	if (!cameras.length) {
-		const res = await getCameras(AUTH);
+		const res = await getCameras();
 		const cameras = res;
 		this.setState({cameras});
 		}
 	}
 
-  async handleGetCameras (AUTH) {
-    const res  = await fetch(URLcameraList, new GetOptions(AUTH))
+  async handleGetCameras () {
+    const res  = await fetch(URLcameraList, new GetOptions())
     const json = await res.json();
     console.log(json); 
     this.setState({ data: json.cameras });

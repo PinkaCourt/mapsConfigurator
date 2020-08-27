@@ -27,9 +27,9 @@ export default class ToolBar extends Component {
           <SaveButton
             saveChangesClick={this.props.saveChangesClick}
             />
-          <CancelButton
+{/*          <CancelButton
             cancelChangesClick={this.props.cancelChangesClick}
-            />
+/>*/}
       </div>
       );
   }

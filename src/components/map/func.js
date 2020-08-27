@@ -15,10 +15,10 @@ import {MapMarkers} from '../../func/bodys.js'
 //import {ToChangeGeoMap} from '../../func/bodys.js'
 import {ToChangedMarkers} from '../../func/bodys.js'
 
-export async function getMaps(AUTH) {
+export async function getMaps() {
   let maps = [];
   let dataMaps;
-  await fetch(URLmaplist, new GetOptions(AUTH))
+  await fetch(URLmaplist, new GetOptions())
    .then(res => res.json())
    .then(data => {dataMaps = data.items}
       )
@@ -43,11 +43,11 @@ export function  getUuid() {
     )
   }
 
-export async function getMapsMarkers(AUTH, mapID) {
+export async function getMapsMarkers(mapID) {
     let markers = [];
     let dataMarkers;
     
-    await fetch(URLMapMarkers, new PostOptions(AUTH, new MapMarkers(mapID)))
+    await fetch(URLMapMarkers, new PostOptions(new MapMarkers(mapID)))
      .then(res => res.json())
      .then(data => {
        dataMarkers = Object.values(data.markers)
@@ -67,7 +67,7 @@ export async function getMapsMarkers(AUTH, mapID) {
   }
 
 
-export async function createMap(AUTH, map, markers) {
+export async function createMap(map, markers) {
   let markersforMap = [];
 
   markers.map((e)=>{
@@ -93,13 +93,13 @@ export async function createMap(AUTH, map, markers) {
     markersforMap.push(marker)
   })
 
-  await fetch(URLchangeMap, new PostOptions(AUTH, new ToCreateGeoMap(map, markersforMap)))
+  await fetch(URLchangeMap, new PostOptions(new ToCreateGeoMap(map, markersforMap)))
     .then(res => res.json())
 }
 
-export async function changeMapMarkers(AUTH, map, markers) {
+export async function changeMapMarkers(map, markers) {
   let markersforMap = [];
-  console.log(AUTH, map, markers)
+  console.log(map, markers)
 
   markers.map((e)=>{
     let marker = {
@@ -124,13 +124,13 @@ export async function changeMapMarkers(AUTH, map, markers) {
     markersforMap.push(marker)
   })
 
-  await fetch(URLMapMarkersUpdate, new PostOptions(AUTH, new ToChangedMarkers(map, markersforMap)))
+  await fetch(URLMapMarkersUpdate, new PostOptions(new ToChangedMarkers(map, markersforMap)))
   .then(res => res.json())
   }
 
 
-export async function deleteMap(AUTH, mapID) {
-  await fetch(URLchangeMap, new PostOptions(AUTH, new ToDeleteMap(mapID)))
+export async function deleteMap(mapID) {
+  await fetch(URLchangeMap, new PostOptions(new ToDeleteMap(mapID)))
   }
 
 
@@ -139,10 +139,10 @@ export function getCameraSnapshot(accessPoint) {
   return URLCameraSnapshot + VIDEOSOURCEID;
   }
 
-export async function getCameraInfo(AUTH, accessPoint) {
+export async function getCameraInfo(accessPoint) {
   const URL = URLCameraInfo + accessPoint;
   let camera = {};
-    await fetch(URL, new GetOptions(AUTH))
+    await fetch(URL, new GetOptions())
     .then(res => res.json())
     .then(data => camera = data.cameras[0])
   return camera;
@@ -150,10 +150,10 @@ export async function getCameraInfo(AUTH, accessPoint) {
   
 /*
 
-export async function gatCameraSnapshot(AUTH, accessPoint) {
+export async function gatCameraSnapshot(accessPoint) {
   const VIDEOSOURCEID = accessPoint.replace(/hosts\//, '');
   const URL = URLCameraSnapshot + VIDEOSOURCEID;
-    await fetch(URL, new GetOptions(AUTH))
+    await fetch(URL, new GetOptions())
     }
 */
   

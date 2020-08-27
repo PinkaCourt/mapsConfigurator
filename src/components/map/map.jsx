@@ -7,7 +7,6 @@ import {createMap} from './func.js'
 import {deleteMap} from './func.js'
 import {getUuid} from './func.js'
 import {changeMapMarkers} from './func.js'
-import {AUTH} from '../../constants/input.js'
 import {coordinateRandom} from '../../func/random.js'
 import ToolBar from './topbar/ToolBar.jsx'
 import {getCameras} from '../cameralist/func.js'
@@ -36,13 +35,13 @@ class Map extends Component {
     const {maps} = this.state;
 
     if (!maps.length) {
-      const maps = await getMaps(AUTH);
+      const maps = await getMaps();
       this.setState({maps});
     }
   }
   
   onSelectMapBookmarkHandler = async (id, etag, name, position, zoom) => {
-    const markers  = await getMapsMarkers(AUTH, id);
+    const markers  = await getMapsMarkers(id);
     let activeMap = {
       id: id,
       etag: etag,
@@ -64,6 +63,7 @@ class Map extends Component {
 // только Москва, только хардкор
   CreateNewMapHandler = () => {
       //console.log('navigator.geolocation');
+      let number = this.state.maps.length + 1; 
       let activeMap = {
         id: getUuid(),
         etag: '',
@@ -72,7 +72,7 @@ class Map extends Component {
           'y': 55.752220
         },
         zoom: 10,
-        name: 'new map',
+        name: `New Map ${number}`,
         };
       let markers = [];
 
@@ -88,7 +88,7 @@ class Map extends Component {
     //console.log('mapPosition', mapPosition);
     //let mapID = this.state.activeMap.id
 
-    let cameras = await getCameras(AUTH);
+    let cameras = await getCameras();
     let markers = [];
 
     cameras.map( e => {
@@ -131,10 +131,10 @@ class Map extends Component {
     const markers = this.state.markers;
 
     this.state.displayNew 
-      ? await createMap(AUTH, map, markers)
-      : await changeMapMarkers(AUTH, map, markers);
+      ? await createMap(map, markers)
+      : await changeMapMarkers(map, markers);
 
-    const maps = await getMaps(AUTH);
+    const maps = await getMaps();
     this.setState({maps});
 
   }
@@ -144,8 +144,8 @@ class Map extends Component {
   }
 
   deleteMapHandler = async () => {
-    await deleteMap(AUTH, this.state.activeMap.id);
-    const maps = await getMaps(AUTH);
+    await deleteMap(this.state.activeMap.id);
+    const maps = await getMaps();
     this.setState({maps});
     //выбираться должна другая карта
         
@@ -162,7 +162,7 @@ class Map extends Component {
 
   selectMarkerHandler = async (accessPoint, position) => {
     //console.log ('selectMarkerHandler')
-    let camera =  await getCameraInfo(AUTH, accessPoint);
+    let camera =  await getCameraInfo(accessPoint);
     let snapshot = getCameraSnapshot(accessPoint);
     console.log(snapshot)
     const selectMarker = {
